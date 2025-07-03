@@ -32,7 +32,7 @@ const Navbar = () => {
         </li>
         <li>
           <a
-            href="#"
+            href="/contact-us"
             className="text-gray-800 hover:text-blue-600 transition"
           >
             Contact Us

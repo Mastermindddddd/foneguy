@@ -1,41 +1,21 @@
 import React from "react";
-import AboutUs2 from "../components/AboutUs2/AboutUs2.jsx";
 import Footer from "../components/Footer/Footer.jsx";
-import Banner from "../components/Banner/Banner.jsx";
-import WhoWeServe from "../components/WhoWeServe/WhoWeServe.jsx";
-import OurPromises from "../components/OurPromises/OurPromises.jsx";
-import SkillsDevelopment from "../components/SkillsDevelopment/SkillsDevelopment.jsx";
-import SkillsSection from "../components/SkillsSection/SkillsSection.jsx";
-import EntrepreneurshipDevelopment from "../components/EntrepreneurshipDevelopment/EntrepreneurshipDevelopment.jsx";
-import ResearchDevelopment from "../components/ResearchAndDevelopment/ResearchAndDevelopment.jsx";
+import FoneGuyPromo from "../components/FoneGuyPromo.jsx";
+import DeviceProtection from "../components/DeviceProtection.jsx";
 
 
 const WhyChooseUs = () => {
   return (
     <div>
-      <section id="foundation-about" className="pt-18">
-        <AboutUs2 />
+      <div className="w-full h-14 bg-blue-600"></div>
+      <section id="foneguy-promo" className="pt-18">
+        <FoneGuyPromo />
       </section>
-      <section id="banner" className="pt-18">
-        <Banner />
+      <section id="device-protection" className="pt-18">
+        <DeviceProtection />
       </section>
-      <section id="Who-we-serve" className="pt-18">
-        <WhoWeServe />
-      </section>
-      <section id="our-promises" className="pt-18">
-        <OurPromises />
-      </section>
-      <section id="skills-development" className="pt-18">
-        <SkillsDevelopment />
-      </section>
-      <section id="skill-section" className="pt-18">
-        <SkillsSection />
-      </section>
-      <section id="entrepreneurship-development" className="pt-18">
-        <EntrepreneurshipDevelopment />
-      </section>
-      <section id="research-development" className="pt-18">
-        <ResearchDevelopment />
+      <section id="footer" className="pt-18">
+        <Footer />
       </section>
     </div>
   );
