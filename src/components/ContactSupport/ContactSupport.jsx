@@ -84,7 +84,7 @@ const ContactSupport = () => {
       </div>
 
       {/* Map Section */}
-      <div className="w-full h-[400px] mt-16">
+      <div className="w-full h-[500px] mt-16">
         <img src="/Joburg-map.png" alt="Johannesburg Map" className="w-full h-full object-cover" />
       </div>
     </div>

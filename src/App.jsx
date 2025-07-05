@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 const Home = React.lazy(() => import("./pages/Home"));
 const WhyChooseUs = React.lazy(() => import("./pages/WhyChooseUs"));
 const ContactUs = React.lazy(() => import("./pages/ContactUs"));
+const Apply = React.lazy(() => import("./pages/apply"));
 
 const App = () => {
   useEffect(() => {
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/apply" element={<Apply />} />
           </Routes>
         </Suspense>
       </div>
