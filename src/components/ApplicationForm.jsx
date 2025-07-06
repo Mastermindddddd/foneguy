@@ -2,7 +2,8 @@ import React from "react";
 
 const ApplicationForm = () => {
   return (
-    <div className="max-w-3xl mx-auto p-6 text-gray-800 space-y-8">
+    <div className="w-full max-w-3xl ml-40 p-6 text-gray-800 mb-20">
+
       <section>
         <h2 className="text-xl font-semibold mb-4">Basic personal information</h2>
         <div className="space-y-4">
@@ -24,7 +25,7 @@ const ApplicationForm = () => {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">Primary contact details</h2>
+        <h2 className="text-xl text-gray-500 mb-4 mt-8">Primary contact details</h2>
         <div className="space-y-4">
           <div>
             <label className="block mb-1">Contact no</label>
@@ -38,7 +39,7 @@ const ApplicationForm = () => {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">Tell us a bit more</h2>
+        <h2 className="text-xl text-gray-500 mb-4 mt-8">Tell us a bit more</h2>
         <div className="space-y-4">
           <div>
             <label className="block mb-1">Company</label>
@@ -51,15 +52,15 @@ const ApplicationForm = () => {
           <div>
             <label className="block mb-1">Preferred method of communication</label>
             <div className="space-x-4">
-              <label><input type="checkbox" /> Phone</label>
-              <label><input type="checkbox" /> Email</label>
+              <label><input type="checkbox" className="mr-2" /> Phone</label>
+              <label><input type="checkbox" className="mr-2" /> Email</label>
             </div>
           </div>
         </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">Payment Confirmation Details</h2>
+        <h2 className="text-xl text-gray-600 mb-4 mt-8">Payment Confirmation Details</h2>
         <div className="space-y-4">
           <div>
             <label>
@@ -69,12 +70,12 @@ const ApplicationForm = () => {
           </div>
 
           <div>
-            <label className="block mb-1">Preferred method of communication</label>
+            <label className="block mb-1 mt-8">Preferred method of payment</label>
             <div className="space-y-2 ml-4">
-              <label className="block"><input type="checkbox" /> Pick-up from my workplace</label>
-              <label className="block"><input type="checkbox" /> Debit order (if selected, please indicate your preferred debit date)</label>
-              <label className="block"><input type="checkbox" /> Electronic Funds Transfer (EFT)</label>
-              <label className="block"><input type="checkbox" /> ATM Direct Deposit</label>
+              <label className="block"><input type="checkbox" className="mr-2" /> Pick-up from my workplace</label>
+              <label className="block"><input type="checkbox" className="mr-2" /> Debit order (if selected, please indicate your preferred debit date)</label>
+              <label className="block"><input type="checkbox" className="mr-2" /> Electronic Funds Transfer (EFT)</label>
+              <label className="block"><input type="checkbox" className="mr-2" /> ATM Direct Deposit</label>
             </div>
           </div>
 
