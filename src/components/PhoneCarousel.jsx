@@ -17,20 +17,19 @@ const PhoneCarousel = () => {
   const [sliderRef, instanceRef] = useKeenSlider({
     slides: { perView: 4, spacing: 15 },
     slideChanged(slider) {
-        setCurrentSlide(slider.track.details.rel);
+      setCurrentSlide(slider.track.details.rel);
     },
     breakpoints: {
-        "(max-width: 1024px)": { slides: { perView: 3, spacing: 10 } },
-        "(max-width: 768px)": { slides: { perView: 2, spacing: 10 } },
-        "(max-width: 480px)": { slides: { perView: 1, spacing: 10 } },
+      "(max-width: 1024px)": { slides: { perView: 3, spacing: 10 } },
+      "(max-width: 768px)": { slides: { perView: 2, spacing: 10 } },
+      "(max-width: 480px)": { slides: { perView: 1, spacing: 10 } },
     },
-    rubberband: false, // disables bouncy effect on end
+    rubberband: false,
     animation: {
-        duration: 800, // slower (default is 500)
-        easing: (t) => t, // linear easing, adjust as needed
+      duration: 800,
+      easing: (t) => t,
     },
-});
-
+  });
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -38,36 +37,46 @@ const PhoneCarousel = () => {
         {phones.map((phone, idx) => (
           <div
             key={idx}
-            className="keen-slider__slide bg-white p-4 rounded-lg shadow-sm border hover:shadow-md transition"
+            className="keen-slider__slide bg-white p-4 rounded-lg shadow border hover:shadow-md transition-all duration-300"
           >
-            <div className="relative flex justify-center items-center mb-4">
+            <div className="flex justify-center items-center mb-4">
               <img
                 src={phone.image}
                 alt={phone.name}
-                className="w-[150px] h-auto transition-transform duration-300 hover:scale-105"
+                className="w-[150px] h-auto object-contain transition-transform duration-300 hover:scale-105"
               />
-              <FaHeart className="absolute top-2 right-2 text-gray-400 hover:text-red-500 cursor-pointer" />
             </div>
-            <h3 className="font-semibold text-center">{phone.name}</h3>
-            <p className="text-center text-gray-600 text-sm">{phone.price}</p>
-            <p className="text-center text-red-600 text-sm font-semibold">
-              Minimum Deposit {phone.deposit}
-            </p>
-            <button className="mt-3 w-full border border-gray-300 py-2 rounded-md hover:bg-gray-100 transition">
-              Add to bag
+
+            {/* Title and Heart aligned in a row */}
+            <div className="flex justify-between items-center mb-1">
+              <h3 className="font-semibold text-[15px] text-gray-900">{phone.name}</h3>
+              <FaHeart className="text-gray-300 hover:text-red-500 cursor-pointer" />
+            </div>
+
+            {/* Info left-aligned */}
+            <div className="text-left space-y-1">
+              <p className="text-gray-700 text-sm">{phone.price}</p>
+              <p className="text-red-600 text-sm font-semibold">
+                Minimum Deposit {phone.deposit}
+              </p>
+            </div>
+
+            {/* View details button */}
+            <button className="mt-4 w-full border border-gray-300 text-sm py-2 rounded-md hover:bg-gray-100 transition">
+              View details
             </button>
           </div>
         ))}
       </div>
 
-      {/* Functional Dots */}
-      <div className="flex justify-center mt-4 space-x-2">
+      {/* Dots */}
+      <div className="flex justify-center mt-6 space-x-2">
         {phones.map((_, idx) => (
           <button
             key={idx}
             onClick={() => instanceRef.current?.moveToIdx(idx)}
             className={`w-3 h-3 rounded-full ${
-              currentSlide === idx ? "bg-blue-500" : "bg-gray-300"
+              currentSlide === idx ? "bg-blue-600" : "bg-gray-300"
             }`}
           ></button>
         ))}
