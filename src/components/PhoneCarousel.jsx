@@ -5,12 +5,12 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const phones = [
-  { name: "OPPO A74", price: "R1 750,00", deposit: "R1 000,00", image: "/a74.png" },
-  { name: "RealMe C51", price: "R1 750,00", deposit: "R1 000,00", image: "/c51.png" },
-  { name: "OPPO A38", price: "R2 495,00", deposit: "R700,00", image: "/a38.png" },
-  { name: "OPPO A58", price: "R2 595,00", deposit: "R700,00", image: "/a58.png" },
-  { name: "OPPO C55", price: "R2 995,00", deposit: "R900,00", image: "/c55.png" },
-  { name: "OPPO A25", price: "R2 995,00", deposit: "R900,00", image: "/a25.png" },
+  { name: "OPPO A74", price: "R1 750,00", deposit: "R800,00", image: "/a74.png" },
+  { name: "RealMe C51", price: "R1 750,00", deposit: "R800,00", image: "/c51.png" },
+  { name: "OPPO A38", price: "R2 495,00", deposit: "R800,00", image: "/a38.png" },
+  { name: "OPPO A58", price: "R2 595,00", deposit: "R800,00", image: "/a58.png" },
+  { name: "OPPO C55", price: "R2 995,00", deposit: "R800,00", image: "/c55.png" },
+  { name: "OPPO A25", price: "R2 995,00", deposit: "R800,00", image: "/a25.png" },
 ];
 
 const PhoneCarousel = () => {
