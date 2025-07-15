@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import CommunicationPreferences from "./CommunicationPreferences";
 
-const ApplicationForm = ({ preferences }) => {
+const ApplicationForm = ({ preferences, setPreferences }) => {
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -99,103 +99,181 @@ const ApplicationForm = ({ preferences }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-3xl ml-40 p-6 text-gray-800 mb-20 space-y-8">
-      {/* Basic personal information */}
-      <section>
-        <h2 className="text-xl font-semibold mb-4">Basic personal information</h2>
-        <div className="space-y-4">
-          <div>
-            <label className="block mb-1">Title</label>
-            <select name="title" value={formData.title} onChange={handleChange} className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200">
-              <option value="">Please select...</option>
-              <option value="Mr">Mr</option>
-              <option value="Mrs">Mrs</option>
-              <option value="Ms">Ms</option>
-              <option value="Dr">Dr</option>
-            </select>
-          </div>
-          <div>
-            <label className="block mb-1">First name</label>
-            <input name="firstName" value={formData.firstName} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200" />
-          </div>
-          <div>
-            <label className="block mb-1">Surname</label>
-            <input name="surname" value={formData.surname} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200" />
-          </div>
+    <form
+  onSubmit={handleSubmit}
+  className="w-full max-w-3xl ml-0 md:ml-40 p-4 md:p-6 text-gray-800 mb-20 space-y-8"
+>
+
+  {/* Basic personal information */}
+  <section>
+    <h2 className="text-xl font-semibold mb-4">Basic personal information</h2>
+    <div className="space-y-4">
+      <div>
+        <label className="block mb-1">Title</label>
+        <select
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        >
+          <option value="">Please select...</option>
+          <option value="Mr">Mr</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Ms">Ms</option>
+          <option value="Dr">Dr</option>
+        </select>
+      </div>
+      <div>
+        <label className="block mb-1">First name</label>
+        <input
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          type="text"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+      <div>
+        <label className="block mb-1">Surname</label>
+        <input
+          name="surname"
+          value={formData.surname}
+          onChange={handleChange}
+          type="text"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Primary contact details */}
+  <section>
+    <h2 className="text-xl text-gray-500 mb-4">Primary contact details</h2>
+    <div className="space-y-4">
+      <div>
+        <label className="block mb-1">Contact no</label>
+        <input
+          name="contactNo"
+          value={formData.contactNo}
+          onChange={handleChange}
+          type="text"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+      <div>
+        <label className="block mb-1">Email address</label>
+        <input
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          type="email"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Tell us a bit more */}
+  <section>
+    <h2 className="text-xl text-gray-500 mb-4">Tell us a bit more</h2>
+    <div className="space-y-4">
+      <div>
+        <label className="block mb-1">Company</label>
+        <input
+          name="company"
+          value={formData.company}
+          onChange={handleChange}
+          type="text"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+      <div>
+        <label className="block mb-1">Please tell us how may we help you?</label>
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          className="w-full border border-gray-300 rounded px-3 py-2 h-32 bg-gray-200"
+        ></textarea>
+      </div>
+    </div>
+  </section>
+
+  {/* Payment Confirmation */}
+  <section>
+    <h2 className="text-xl text-gray-600 mb-4">Payment Confirmation Details</h2>
+    <div className="space-y-4">
+      <label className="flex items-center">
+        <input
+          type="checkbox"
+          name="depositConfirmed"
+          checked={formData.depositConfirmed}
+          onChange={handleChange}
+          className="mr-2"
+        />
+        I confirm that I have the R1,000 deposit ready
+      </label>
+
+      <div>
+        <label className="block mb-1">Preferred method of payment</label>
+        <div className="space-y-2 md:ml-4">
+          {["Pick-up from my workplace", "Debit order", "EFT", "ATM Direct Deposit"].map((method) => (
+            <label key={method} className="block">
+              <input
+                type="checkbox"
+                name="paymentMethods"
+                value={method}
+                checked={formData.paymentMethods.includes(method)}
+                onChange={handleChange}
+                className="mr-2"
+              />
+              {method}
+            </label>
+          ))}
         </div>
-      </section>
+      </div>
 
-      {/* Primary contact details */}
-      <section>
-        <h2 className="text-xl text-gray-500 mb-4">Primary contact details</h2>
-        <div className="space-y-4">
-          <div>
-            <label className="block mb-1">Contact no</label>
-            <input name="contactNo" value={formData.contactNo} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200" />
-          </div>
-          <div>
-            <label className="block mb-1">Email address</label>
-            <input name="email" value={formData.email} onChange={handleChange} type="email" className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200" />
-          </div>
-        </div>
-      </section>
+      <div>
+        <label className="block mb-1">Preferred Debit Date</label>
+        <input
+          name="preferredDebitDate"
+          value={formData.preferredDebitDate}
+          onChange={handleChange}
+          type="text"
+          placeholder="DD/MM/YYYY"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+      <div>
+        <label className="block mb-1">Salary Date</label>
+        <input
+          name="salaryDate"
+          value={formData.salaryDate}
+          onChange={handleChange}
+          type="text"
+          placeholder="DD/MM/YYYY"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+    </div>
+  </section>
 
-      {/* Tell us a bit more */}
-      <section>
-        <h2 className="text-xl text-gray-500 mb-4">Tell us a bit more</h2>
-        <div className="space-y-4">
-          <div>
-            <label className="block mb-1">Company</label>
-            <input name="company" value={formData.company} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200" />
-          </div>
-          <div>
-            <label className="block mb-1">Please tell us how may we help you?</label>
-            <textarea name="message" value={formData.message} onChange={handleChange} className="w-full border border-gray-300 rounded px-3 py-2 h-32 bg-gray-200"></textarea>
-          </div>
-        </div>
-      </section>
+  {/* Communication Preferences */}
+  <CommunicationPreferences preferences={preferences} setPreferences={setPreferences} />
 
-      {/* Payment Confirmation */}
-      <section>
-        <h2 className="text-xl text-gray-600 mb-4">Payment Confirmation Details</h2>
-        <div className="space-y-4">
-          <label>
-            <input type="checkbox" name="depositConfirmed" checked={formData.depositConfirmed} onChange={handleChange} className="mr-2" />
-            I confirm that I have the R1,000 deposit ready
-          </label>
+  {/* Submit */}
+  <button
+    type="submit"
+    disabled={loading}
+    className="mt-6 bg-cyan-700 text-white font-semibold px-6 py-2 rounded hover:bg-cyan-800 w-full sm:w-auto"
+  >
+    {loading ? "Submitting..." : "Submit Application"}
+  </button>
 
-          <div>
-            <label className="block mb-1">Preferred method of payment</label>
-            <div className="space-y-2 ml-4">
-              {["Pick-up from my workplace", "Debit order", "EFT", "ATM Direct Deposit"].map((method) => (
-                <label key={method} className="block">
-                  <input type="checkbox" name="paymentMethods" value={method} checked={formData.paymentMethods.includes(method)} onChange={handleChange} className="mr-2" />
-                  {method}
-                </label>
-              ))}
-            </div>
-          </div>
+  {success && <p className="text-green-600 mt-4">{success}</p>}
+  {error && <p className="text-red-600 mt-4">{error}</p>}
+</form>
 
-          <div>
-            <label className="block mb-1">Preferred Debit Date</label>
-            <input name="preferredDebitDate" value={formData.preferredDebitDate} onChange={handleChange} type="text" placeholder="DD/MM/YYYY" className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200" />
-          </div>
-          <div>
-            <label className="block mb-1">Salary Date</label>
-            <input name="salaryDate" value={formData.salaryDate} onChange={handleChange} type="text" placeholder="DD/MM/YYYY" className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200" />
-          </div>
-        </div>
-      </section>
-      <CommunicationPreferences preferences={preferences} />
-
-      {/* Submit */}
-      <button type="submit" disabled={loading} className="mt-6 bg-cyan-700 text-white font-semibold px-6 py-2 rounded hover:bg-cyan-800">
-        {loading ? "Submitting..." : "Submit Application"}
-      </button>
-
-      {success && <p className="text-green-600 mt-4">{success}</p>}
-      {error && <p className="text-red-600 mt-4">{error}</p>}
-    </form>
   );
 };
 

@@ -9,13 +9,13 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
   };
 
   const togglePreference = (channel, value) => {
-  setPreferences((prev) => ({ ...prev, [channel]: value }));
-};
-
+    setPreferences((prev) => ({ ...prev, [channel]: value }));
+  };
 
   const renderToggleBox = (active, onClick, label) => (
     <button
       onClick={onClick}
+      type="button"
       className={`border-2 rounded w-10 h-10 flex items-center justify-center text-lg font-bold
         ${active ? "border-blue-500 bg-blue-50 text-blue-600" : "border-gray-300 text-gray-500"}`}
     >
@@ -24,7 +24,7 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
   );
 
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-6 text-gray-800 text-sm">
+    <div className="max-w-5xl w-full px-4 md:px-6 mx-auto space-y-6 text-gray-800 text-sm">
       <p>
         I would like to receive communication from the Pepkor Group of Companies and its business partners, as indicated in the FoneGuy Group of companies'{" "}
         <a href="#" className="text-blue-600 underline">
@@ -33,22 +33,23 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
         , to tell me about their promotions, products, and services via:
       </p>
 
-      <div className="grid grid-cols-4 gap-6 text-center">
-        {[
-          { key: "email", label: "Email" },
-          { key: "sms", label: "SMS" },
-          { key: "phone", label: "Phone" },
-          { key: "messaging", label: "Instant Messaging (e.g. WhatsApp)" },
-        ].map(({ key, label }) => (
-          <div key={key} className="flex items-center space-y-2">
-            <span>{label}</span>
-            <div className="flex space-x-2 ml-2">
-              {renderToggleBox(preferences[key], () => togglePreference(key, true), "Y")}
-              {renderToggleBox(!preferences[key], () => togglePreference(key, false), "N")}
-            </div>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  {[
+    { key: "email", label: "Email" },
+    { key: "sms", label: "SMS" },
+    { key: "phone", label: "Phone" },
+    { key: "messaging", label: "Instant Messaging (e.g. WhatsApp)" },
+  ].map(({ key, label }) => (
+    <div key={key} className="flex flex-col space-y-2">
+      <span className="text-center">{label}</span>
+      <div className="flex justify-center space-x-2">
+        {renderToggleBox(preferences[key], () => togglePreference(key, true), "Y")}
+        {renderToggleBox(!preferences[key], () => togglePreference(key, false), "N")}
       </div>
+    </div>
+  ))}
+</div>
+
 
       <div className="space-y-4">
         <label className="flex items-start space-x-2">
@@ -85,13 +86,15 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
         </label>
       </div>
 
-      {/* Real reCAPTCHA should be used here */}
+      {/* Uncomment when ready */}
+      {/* 
       <div className="mt-4">
         <ReCAPTCHA
           sitekey="YOUR_RECAPTCHA_SITE_KEY"
           onChange={handleCaptchaChange}
         />
       </div>
+      */}
     </div>
   );
 };
