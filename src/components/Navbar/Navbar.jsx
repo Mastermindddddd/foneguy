@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
@@ -19,11 +19,13 @@ const Navbar = () => {
         <div className="mx-auto flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center space-x-2">
+            <Link to="/">
             <img
               src="/vite.png"
               alt="FONEGUY Logo"
               className="h-16 md:h-20 w-auto"
             />
+            </Link>
           </div>
 
           {/* Desktop Menu */}
