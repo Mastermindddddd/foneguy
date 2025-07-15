@@ -22,16 +22,21 @@ const ContactSupport = () => {
       email: formData.email,
       phone: formData.phone,
       message: formData.message,
-      recipient: "kenn@techcafe.co.za",
     };
 
     emailjs
-      .send("service_4adi92g", "template_6q39ajp", templateParams, "A3HheLfZyBCVci9Tn")
+      .send(
+        "service_c14wmul",      // replace with your EmailJS service ID
+        "template_dmeiusr",     // replace with your EmailJS template ID
+        templateParams,
+        "09z4nZUsb7p5XukxJ"       // replace with your EmailJS public key
+      )
       .then(() => {
         setSuccess("Message sent successfully!");
         setFormData({ name: "", email: "", phone: "", message: "" });
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err);
         setError("Failed to send message. Please try again.");
       })
       .finally(() => setLoading(false));
@@ -39,8 +44,6 @@ const ContactSupport = () => {
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center bg-white overflow-hidden">
-
-      {/* Header */}
       <div className="text-center py-12 px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Contact & Support</h2>
         <p className="text-gray-600 mt-2 max-w-xl mx-auto">
@@ -48,10 +51,9 @@ const ContactSupport = () => {
         </p>
       </div>
 
-      {/* Contact Form and Info */}
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-0 py-8 relative z-10">
-        {/* Full section spiral background covering entire section */}
-      <img src="/spiral-bg.png" alt="Background Spiral" className="absolute inset-0 w-full h-full object-cover opacity-20 -z-10" />
+        <img src="/spiral-bg.png" alt="Background Spiral" className="absolute inset-0 w-full h-full object-cover opacity-20 -z-10" />
+        
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-10 space-y-4">
           <h3 className="text-xl font-semibold text-gray-800 mb-4">Get in Touch with Us</h3>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -59,7 +61,9 @@ const ContactSupport = () => {
             <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="example@company.com" className="w-full p-3 border border-gray-300 rounded-lg" />
             <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="+11 000 000 000" className="w-full p-3 border border-gray-300 rounded-lg" />
             <textarea name="message" value={formData.message} onChange={handleChange} required placeholder="Leave us a Message" rows="4" className="w-full p-3 border border-gray-300 rounded-lg"></textarea>
-            <button type="submit" className="w-full bg-teal-600 text-white p-3 rounded-lg font-semibold" disabled={loading}>{loading ? "Sending..." : "Send Message"}</button>
+            <button type="submit" className="w-full bg-teal-600 text-white p-3 rounded-lg font-semibold" disabled={loading}>
+              {loading ? "Sending..." : "Send Message"}
+            </button>
             {success && <p className="text-green-600">{success}</p>}
             {error && <p className="text-red-600">{error}</p>}
           </form>
@@ -77,13 +81,12 @@ const ContactSupport = () => {
           </div>
           <div>
             <h4 className="text-lg font-semibold">Address</h4>
-            <p className="">We're centrally located. Use the map below to get directions.</p>
+            <p>We're centrally located. Use the map below to get directions.</p>
             <p className="font-medium underline mt-1">Woodlands Office Park, 20 Woodlands Dr, Woodlands, Sandton, 2080</p>
           </div>
         </div>
       </div>
 
-      {/* Map Section */}
       <div className="w-full h-[500px] mt-16">
         <img src="/Joburg-map.png" alt="Johannesburg Map" className="w-full h-full object-cover" />
       </div>

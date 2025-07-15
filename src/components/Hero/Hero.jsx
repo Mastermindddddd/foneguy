@@ -7,9 +7,6 @@ const Hero = () => {
   return (
     <div className="relative w-full bg-white overflow-hidden">
 
-      {/* Blue Accent Bar */}
-      <div className="w-full h-14 bg-blue-600"></div>
-
       {/* Hero Section */}
       <div className="flex flex-col lg:flex-row items-center justify-start max-w-7xl mx-auto px-6">
   {/* Text Content */}

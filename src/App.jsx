@@ -10,6 +10,7 @@ const Home = React.lazy(() => import("./pages/Home"));
 const WhyChooseUs = React.lazy(() => import("./pages/WhyChooseUs"));
 const ContactUs = React.lazy(() => import("./pages/ContactUs"));
 const Apply = React.lazy(() => import("./pages/apply"));
+const DeviceGrid = React.lazy(() => import("./pages/DeviceGrid"));
 
 const App = () => {
   useEffect(() => {
@@ -27,12 +28,14 @@ const App = () => {
       <ScrollToTop /> {/* Ensure scrolling to top on route change */}
       <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
         <Navbar />
+        <div className="w-full h-14 bg-blue-600"></div>
         <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/apply" element={<Apply />} />
+            <Route path="/products" element={<DeviceGrid />} />
           </Routes>
         </Suspense>
       </div>

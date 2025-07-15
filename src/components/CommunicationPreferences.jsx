@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const CommunicationPreferences = () => {
-  const [preferences, setPreferences] = useState({
-    email: true,
-    sms: true,
-    phone: true,
-    messaging: true,
-  });
+const CommunicationPreferences = ({ preferences, setPreferences }) => {
   const [captchaVerified, setCaptchaVerified] = useState(false);
 
   const handleCaptchaChange = (value) => {
@@ -15,8 +9,9 @@ const CommunicationPreferences = () => {
   };
 
   const togglePreference = (channel, value) => {
-    setPreferences((prev) => ({ ...prev, [channel]: value }));
-  };
+  setPreferences((prev) => ({ ...prev, [channel]: value }));
+};
+
 
   const renderToggleBox = (active, onClick, label) => (
     <button
@@ -96,12 +91,6 @@ const CommunicationPreferences = () => {
           sitekey="YOUR_RECAPTCHA_SITE_KEY"
           onChange={handleCaptchaChange}
         />
-      </div>
-
-      <div className="flex justify-end">
-        <button className="bg-cyan-700 text-white font-semibold px-6 py-2 rounded hover:bg-cyan-800">
-          PROCEED
-        </button>
       </div>
     </div>
   );

@@ -7,7 +7,6 @@ import DeviceProtection from "../components/DeviceProtection.jsx";
 const WhyChooseUs = () => {
   return (
     <div>
-      <div className="w-full h-14 bg-blue-600"></div>
       <section id="foneguy-promo" className="pt-18">
         <FoneGuyPromo />
       </section>

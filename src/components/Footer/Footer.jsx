@@ -32,10 +32,10 @@ const Footer = () => {
         <div>
           <h4 className="font-semibold mb-3">Quick Links</h4>
           <ul className="space-y-2 text-gray-300">
-            <li><a href="#" className="underline">Home</a></li>
-            <li><a href="#" className="underline">Why Choose Us</a></li>
-            <li><a href="#" className="underline">Contact Us</a></li>
-            <li><a href="#" className="underline">Apply Now!</a></li>
+            <li><a href="/" className="underline">Home</a></li>
+            <li><a href="/why-choose-us" className="underline">Why Choose Us</a></li>
+            <li><a href="/contact-us" className="underline">Contact Us</a></li>
+            <li><a href="/apply" className="underline">Apply Now!</a></li>
           </ul>
         </div>
 

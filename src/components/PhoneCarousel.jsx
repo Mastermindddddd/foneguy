@@ -43,7 +43,7 @@ const PhoneCarousel = () => {
               <img
                 src={phone.image}
                 alt={phone.name}
-                className="w-[150px] h-auto object-contain transition-transform duration-300 hover:scale-105"
+                className="w-[200px] h-[200px] object-contain object-center transition-transform duration-300 hover:scale-105 bg-white"
               />
             </div>
 

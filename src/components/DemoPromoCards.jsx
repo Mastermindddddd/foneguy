@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const DemoPromoCards = () => {
   return (
@@ -15,9 +16,11 @@ const DemoPromoCards = () => {
             Our certified pre-loved demo devices were previously used in-store for display and are now
             available to you at a fraction of the cost.
           </p>
-          <button className="bg-white text-teal-700 font-semibold px-5 py-2 rounded shadow hover:bg-gray-100">
-            Shop now
-          </button>
+          <Link to="/products">
+            <button className="bg-white text-teal-700 font-semibold px-5 py-2 rounded shadow hover:bg-gray-100">
+              Shop now
+            </button>
+          </Link>
         </div>
 
         {/* Image aligned to bottom and full height */}
