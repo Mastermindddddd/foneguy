@@ -33,23 +33,22 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
         , to tell me about their promotions, products, and services via:
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-  {[
-    { key: "email", label: "Email" },
-    { key: "sms", label: "SMS" },
-    { key: "phone", label: "Phone" },
-    { key: "messaging", label: "Instant Messaging (e.g. WhatsApp)" },
-  ].map(({ key, label }) => (
-    <div key={key} className="flex flex-col space-y-2">
-      <span className="text-center">{label}</span>
-      <div className="flex justify-center space-x-2">
-        {renderToggleBox(preferences[key], () => togglePreference(key, true), "Y")}
-        {renderToggleBox(!preferences[key], () => togglePreference(key, false), "N")}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { key: "email", label: "Email" },
+          { key: "sms", label: "SMS" },
+          { key: "phone", label: "Phone" },
+          { key: "messaging", label: "Instant Messaging (e.g. WhatsApp)" },
+        ].map(({ key, label }) => (
+          <div key={key} className="flex flex-col space-y-2">
+            <span className="text-center">{label}</span>
+            <div className="flex justify-center space-x-2">
+              {renderToggleBox(preferences[key], () => togglePreference(key, true), "Y")}
+              {renderToggleBox(!preferences[key], () => togglePreference(key, false), "N")}
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
 
       <div className="space-y-4">
         <label className="flex items-start space-x-2">

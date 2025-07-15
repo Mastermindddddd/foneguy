@@ -1,5 +1,6 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const products = [
   { name: "Realme C51", price: "R1 750,00", info: "Minimum Deposit R800.00", image: "/realme-c51.png" },
@@ -70,9 +71,11 @@ const DeviceGrid = () => {
             </div>
 
             {/* Add to bag button */}
+            <Link to="/apply">
             <button className="mt-4 w-full border border-gray-300 text-sm py-2 rounded-md hover:bg-gray-100 transition">
-              Add to bag
+              Shop Now
             </button>
+            </Link>
           </div>
         ))}
       </div>

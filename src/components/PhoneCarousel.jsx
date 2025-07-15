@@ -59,10 +59,11 @@ const PhoneCarousel = () => {
                 Minimum Deposit {phone.deposit}
               </p>
             </div>
-
+            <Link to="/apply">
             <button className="mt-4 w-full border border-gray-300 text-sm py-2 rounded-md hover:bg-gray-100 transition">
-              View details
+              Shop Now
             </button>
+            </Link>
           </div>
         ))}
       </div>
