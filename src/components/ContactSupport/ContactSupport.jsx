@@ -88,8 +88,19 @@ const ContactSupport = () => {
       </div>
 
       <div className="w-full h-[500px] mt-16">
-        <img src="/Joburg-map.png" alt="Johannesburg Map" className="w-full h-full object-cover" />
-      </div>
+  <a
+    href="https://www.google.com/maps/place/Woodlands+Office+Park,+20+Woodlands+Dr,+Woodlands,+Sandton,+2080"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="/Joburg-map.png"
+      alt="Johannesburg Map"
+      className="w-full h-full object-cover hover:opacity-90 transition-opacity duration-300 cursor-pointer"
+    />
+  </a>
+</div>
+
     </div>
   );
 };

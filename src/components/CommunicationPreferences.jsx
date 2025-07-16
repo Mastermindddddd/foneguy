@@ -24,7 +24,7 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
   );
 
   return (
-    <div className="max-w-5xl w-full px-4 md:px-6 mx-auto space-y-6 text-gray-800 text-sm">
+    <div className="max-w-7xl w-full px-4 md:px-6 mx-auto space-y-6 text-gray-800 text-sm">
       <p>
         I would like to receive communication from the Pepkor Group of Companies and its business partners, as indicated in the FoneGuy Group of companies'{" "}
         <a href="#" className="text-blue-600 underline">
@@ -34,21 +34,24 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {[
-          { key: "email", label: "Email" },
-          { key: "sms", label: "SMS" },
-          { key: "phone", label: "Phone" },
-          { key: "messaging", label: "Instant Messaging (e.g. WhatsApp)" },
-        ].map(({ key, label }) => (
-          <div key={key} className="flex flex-col space-y-2">
-            <span className="text-center">{label}</span>
-            <div className="flex justify-center space-x-2">
-              {renderToggleBox(preferences[key], () => togglePreference(key, true), "Y")}
-              {renderToggleBox(!preferences[key], () => togglePreference(key, false), "N")}
-            </div>
-          </div>
-        ))}
+  {[
+    { key: "email", label: "Email" },
+    { key: "sms", label: "SMS" },
+    { key: "phone", label: "Phone" },
+    { key: "messaging", label: "Instant Messaging (e.g. WhatsApp)" },
+  ].map(({ key, label }) => (
+    <div key={key} className="flex flex-col items-center space-y-2 text-center">
+      <span className="h-10 flex items-center justify-center text-sm leading-snug px-2">
+        {label}
+      </span>
+      <div className="flex space-x-2">
+        {renderToggleBox(preferences[key], () => togglePreference(key, true), "Y")}
+        {renderToggleBox(!preferences[key], () => togglePreference(key, false), "N")}
       </div>
+    </div>
+  ))}
+</div>
+
 
       <div className="space-y-4">
         <label className="flex items-start space-x-2">

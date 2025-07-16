@@ -49,7 +49,7 @@ const Footer = () => {
               <a href="mailto:kenn@techcafe.co.za" className="underline">kenn@techcafe.co.za</a>
             </li>
             <li><span className="font-semibold text-white">USSD:</span> *134*33011# (free)</li>
-            <li><span className="font-semibold text-white">Address:</span> </li>
+            <li><span className="font-semibold text-white">Address:</span> Woodlands Office Park, 20 Woodlands Dr, Woodlands, Sandton, 2080</li>
           </ul>
         </div>
 
