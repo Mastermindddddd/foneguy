@@ -22,7 +22,6 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
       {label}
     </button>
   );
-
   return (
     <div className="max-w-7xl w-full px-4 md:px-6 mx-auto space-y-6 text-gray-800 text-sm">
       <p>
