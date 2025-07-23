@@ -14,7 +14,9 @@ const Hero = () => {
           </h1>
           <p className="text-gray-600 text-lg sm:text-xl mb-8">
             Get access from as{" "}
-            <span className="italic font-semibold text-black">little</span> as R162 per month
+            <span className="italic font-semibold text-black">little</span> as R162 per month<br/>
+            NO paperwork. No Credit checks. Flexible<br/>
+            repayment. Get your Fone within 24hrs.
           </p>
           <Link to="/apply">
             <img

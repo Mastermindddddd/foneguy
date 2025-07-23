@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import CommunicationPreferences from "./CommunicationPreferences";
+import { useNavigate } from "react-router-dom";
 
 const ApplicationForm = ({ preferences, setPreferences }) => {
   const [formData, setFormData] = useState({
@@ -21,6 +21,8 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -67,35 +69,33 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
       salary_date: formData.salaryDate,
     };
 
-    emailjs
-      .send(
-        "service_lkwx8dh", // Replace with your EmailJS Service ID
-        "template_gzfzaaj", // Replace with your EmailJS Template ID
-        templateParams,
-        "09z4nZUsb7p5XukxJ"   // Replace with your EmailJS Public Key
-      )
-      .then(() => {
-        setSuccess("Application submitted successfully!");
-        setFormData({
-          title: "",
-          firstName: "",
-          surname: "",
-          contactNo: "",
-          email: "",
-          company: "",
-          message: "",
-          preferredCommunication: [],
-          depositConfirmed: false,
-          paymentMethods: [],
-          preferredDebitDate: "",
-          salaryDate: "",
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Failed to submit application. Please try again.");
-      })
-      .finally(() => setLoading(false));
+    try {
+  localStorage.setItem("applicationFormData", JSON.stringify(templateParams));
+  setSuccess("Application saved successfully! Proceeding...");
+  setFormData({
+    title: "",
+    firstName: "",
+    surname: "",
+    contactNo: "",
+    email: "",
+    company: "",
+    message: "",
+    preferredCommunication: [],
+    depositConfirmed: false,
+    paymentMethods: [],
+    preferredDebitDate: "",
+    salaryDate: "",
+  });
+
+  setTimeout(() => {
+    navigate("/document-upload-form");
+  }, 1000);
+} catch (error) {
+  console.error("Failed to save form data:", error);
+  setError("Could not proceed. Please try again.");
+}
+setLoading(false);
+
   };
 
   return (
@@ -145,16 +145,172 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
       </div>
     </div>
   </section>
+  <section className="space-y-4">
+  {/* Identification Type */}
+  <div>
+    <label className="block font-medium mb-1">Identification Type</label>
+    <div className="space-y-2">
+      <label className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          name="idType"
+          value="SA ID"
+          checked={formData.idType === "SA ID"}
+          onChange={handleChange}
+          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
+        />
+        <span>SA ID</span>
+      </label>
+      <label className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          name="idType"
+          value="Passport"
+          checked={formData.idType === "Passport"}
+          onChange={handleChange}
+          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
+        />
+        <span>Passport</span>
+      </label>
+    </div>
+  </div>
+
+  {/* ID/Passport Number */}
+  <div>
+    <label className="block font-medium mb-1">ID/ Passport Number</label>
+    <input
+      type="text"
+      name="idPassportNumber"
+      value={formData.idPassportNumber}
+      onChange={handleChange}
+      className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+    />
+  </div>
+
+  {/* ID/Passport Country */}
+  <div>
+  <label className="block font-medium mb-1">ID/ Passport Country</label>
+  <select
+    name="idPassportCountry"
+    value={formData.idPassportCountry}
+    onChange={handleChange}
+    className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+  >
+    <option value="">Please select...</option>
+    <option value="Afghanistan">Afghanistan</option>
+    <option value="Albania">Albania</option>
+    <option value="Algeria">Algeria</option>
+    <option value="Argentina">Argentina</option>
+    <option value="Australia">Australia</option>
+    <option value="Austria">Austria</option>
+    <option value="Bangladesh">Bangladesh</option>
+    <option value="Belgium">Belgium</option>
+    <option value="Brazil">Brazil</option>
+    <option value="Canada">Canada</option>
+    <option value="China">China</option>
+    <option value="Denmark">Denmark</option>
+    <option value="Egypt">Egypt</option>
+    <option value="Ethiopia">Ethiopia</option>
+    <option value="France">France</option>
+    <option value="Germany">Germany</option>
+    <option value="Ghana">Ghana</option>
+    <option value="India">India</option>
+    <option value="Indonesia">Indonesia</option>
+    <option value="Ireland">Ireland</option>
+    <option value="Italy">Italy</option>
+    <option value="Japan">Japan</option>
+    <option value="Kenya">Kenya</option>
+    <option value="Malaysia">Malaysia</option>
+    <option value="Mexico">Mexico</option>
+    <option value="Netherlands">Netherlands</option>
+    <option value="New Zealand">New Zealand</option>
+    <option value="Nigeria">Nigeria</option>
+    <option value="Norway">Norway</option>
+    <option value="Pakistan">Pakistan</option>
+    <option value="Philippines">Philippines</option>
+    <option value="Portugal">Portugal</option>
+    <option value="Russia">Russia</option>
+    <option value="Saudi Arabia">Saudi Arabia</option>
+    <option value="Singapore">Singapore</option>
+    <option value="South Africa">South Africa</option>
+    <option value="South Korea">South Korea</option>
+    <option value="Spain">Spain</option>
+    <option value="Sweden">Sweden</option>
+    <option value="Switzerland">Switzerland</option>
+    <option value="Thailand">Thailand</option>
+    <option value="Turkey">Turkey</option>
+    <option value="Ukraine">Ukraine</option>
+    <option value="United Arab Emirates">United Arab Emirates</option>
+    <option value="United Kingdom">United Kingdom</option>
+    <option value="United States">United States</option>
+    <option value="Vietnam">Vietnam</option>
+    <option value="Zimbabwe">Zimbabwe</option>
+  </select>
+</div>
+
+  {/* Gender */}
+  <div>
+    <label className="block font-medium mb-1">Gender*</label>
+    <div className="space-y-2">
+      <label className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          name="gender"
+          value="Female"
+          checked={formData.gender === "Female"}
+          onChange={handleChange}
+          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
+        />
+        <span>Female</span>
+      </label>
+      <label className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          name="gender"
+          value="Male"
+          checked={formData.gender === "Male"}
+          onChange={handleChange}
+          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
+        />
+        <span>Male</span>
+      </label>
+    </div>
+  </div>
+
+  {/* Date of Birth */}
+  <div>
+    <label className="block font-medium mb-1">Date of Birth</label>
+    <input
+      type="text"
+      name="dateOfBirth"
+      value={formData.dateOfBirth}
+      onChange={handleChange}
+      placeholder="DD/MM/YYYY"
+      className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+    />
+  </div>
+</section>
+
 
   {/* Primary contact details */}
   <section>
     <h2 className="text-xl text-gray-500 mb-4">Primary contact details</h2>
     <div className="space-y-4">
       <div>
-        <label className="block mb-1">Contact no</label>
+        <label className="block mb-1">mobile Number</label>
         <input
           name="contactNo"
           value={formData.contactNo}
+          onChange={handleChange}
+          type="text"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+      <div>
+        <label className="block mb-1">mobile Number of A Friend/Family</label>
+        <input
+          name="familyNo"
+          value={formData.familyNo}
           onChange={handleChange}
           type="text"
           className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
@@ -167,6 +323,16 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
           value={formData.email}
           onChange={handleChange}
           type="email"
+          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+        />
+      </div>
+      <div>
+        <label className="block mb-1">Postal Code</label>
+        <input
+          name="postalCode"
+          value={formData.postalCode}
+          onChange={handleChange}
+          type="text"
           className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
         />
       </div>
@@ -184,9 +350,21 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
           value={formData.company}
           onChange={handleChange}
           type="text"
+          placeholder="where do you work?"
           className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
         />
       </div>
+      <div>
+    <label className="block font-medium mb-1">how long have you worked?</label>
+    <input
+      type="text"
+      name="workDuration"
+      value={formData.workDuration}
+      onChange={handleChange}
+      placeholder="DD/MM/YYYY"
+      className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
+    />
+  </div>
       <div>
         <label className="block mb-1">Please tell us how may we help you?</label>
         <textarea
@@ -196,6 +374,33 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
           className="w-full border border-gray-300 rounded px-3 py-2 h-32 bg-gray-200"
         ></textarea>
       </div>
+      <div>
+    <label className="block font-medium mb-1">Preferred method of communication</label>
+    <div className="space-y-2">
+      <label className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          name="method"
+          value="Phone"
+          checked={formData.gender === "Phone"}
+          onChange={handleChange}
+          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
+        />
+        <span>Phone</span>
+      </label>
+      <label className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          name="method"
+          value="Email"
+          checked={formData.gender === "Email"}
+          onChange={handleChange}
+          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
+        />
+        <span>Email</span>
+      </label>
+    </div>
+  </div>
     </div>
   </section>
 
@@ -217,7 +422,7 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
       <div>
         <label className="block mb-1">Preferred method of payment</label>
         <div className="space-y-2 md:ml-4">
-          {["Pick-up from my workplace", "Debit order", "EFT", "ATM Direct Deposit"].map((method) => (
+          {["Pick-up from my workplace", "Electronic Funds Transfer (EFT)", "ATM Direct Deposit"].map((method) => (
             <label key={method} className="block">
               <input
                 type="checkbox"
@@ -234,17 +439,6 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
       </div>
 
       <div>
-        <label className="block mb-1">Preferred Debit Date</label>
-        <input
-          name="preferredDebitDate"
-          value={formData.preferredDebitDate}
-          onChange={handleChange}
-          type="text"
-          placeholder="DD/MM/YYYY"
-          className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
-        />
-      </div>
-      <div>
         <label className="block mb-1">Salary Date</label>
         <input
           name="salaryDate"
@@ -258,16 +452,13 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
     </div>
   </section>
 
-  {/* Communication Preferences */}
-  <CommunicationPreferences preferences={preferences} setPreferences={setPreferences} />
-
   {/* Submit */}
   <button
     type="submit"
     disabled={loading}
     className="mt-6 bg-cyan-700 text-white font-semibold px-6 py-2 rounded hover:bg-cyan-800 w-full sm:w-auto"
   >
-    {loading ? "Submitting..." : "Submit Application"}
+    {loading ? "Proceeding..." : "PROCEED"}
   </button>
 
   {success && <p className="text-green-600 mt-4">{success}</p>}

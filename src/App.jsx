@@ -4,6 +4,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ScrollToTop from "./components/ScrollToTop"; // Import ScrollToTop
 import Navbar from "./components/Navbar/Navbar";
+import DocumentUploadForm from "./components/DocumentUploadForm";
+import ApplicationSuccessMessage from "./components/ApplicationSuccessMessage";
 
 // Lazy load pages
 const Home = React.lazy(() => import("./pages/Home"));
@@ -36,6 +38,8 @@ const App = () => {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/apply" element={<Apply />} />
             <Route path="/products" element={<DeviceGrid />} />
+            <Route path="/document-upload-form" element={<DocumentUploadForm />} />
+            <Route path="/success" element={<ApplicationSuccessMessage />} />
           </Routes>
         </Suspense>
       </div>

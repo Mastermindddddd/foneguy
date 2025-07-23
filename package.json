@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.2.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.2.0",
     "@remix-run/dev": "^2.15.3",
     "@remix-run/react": "^2.15.3",
     "aos": "^2.3.4",

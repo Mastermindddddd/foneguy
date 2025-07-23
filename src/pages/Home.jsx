@@ -5,6 +5,7 @@ import PhoneCarousel from "../components/PhoneCarousel.jsx";
 import GetStarted from "../components/GetStarted.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import DemoPromoCards from "../components/DemoPromoCards.jsx";
+import CanIAffordThis from "../components/CanIAffordThis";
 
 const Home = () => {
   return (
@@ -12,6 +13,9 @@ const Home = () => {
       <Hero />
       <section id="phones" className="pt-18">
         <PhoneCarousel />
+      </section>
+      <section id="afford" className="pt-18">
+        <CanIAffordThis />
       </section>
       <section id="get-started" className="pt-18">
         <GetStarted />
