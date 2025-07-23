@@ -32,7 +32,7 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
         , to tell me about their promotions, products, and services via:
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
   {[
     { key: "email", label: "Email" },
     { key: "sms", label: "SMS" },
@@ -52,9 +52,9 @@ const CommunicationPreferences = ({ preferences, setPreferences }) => {
 </div>
 
 
-      <div className="space-y-4">
+      <div className="space-y-4 mt-8">
         <label className="flex items-start space-x-2">
-          <input type="checkbox" className="mt-1" />
+          <input type="checkbox" className="mt-6" />
           <span>
             Join <strong>+more</strong>, the rewards programme that unlocks instant savings and great benefits at 15+ retailers.
             <br />

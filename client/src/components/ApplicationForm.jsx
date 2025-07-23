@@ -106,10 +106,10 @@ setLoading(false);
 
   {/* Basic personal information */}
   <section>
-    <h2 className="text-xl font-semibold mb-4">Basic personal information</h2>
+    <h2 className="text-2xl mb-4 text-gray-700">Basic personal information</h2>
     <div className="space-y-4">
       <div>
-        <label className="block mb-1">Title</label>
+        <label className="block mb-1 font-semibold">Title</label>
         <select
           name="title"
           value={formData.title}
@@ -120,11 +120,10 @@ setLoading(false);
           <option value="Mr">Mr</option>
           <option value="Mrs">Mrs</option>
           <option value="Ms">Ms</option>
-          <option value="Dr">Dr</option>
         </select>
       </div>
       <div>
-        <label className="block mb-1">First name</label>
+        <label className="block mb-1 font-semibold">First name</label>
         <input
           name="firstName"
           value={formData.firstName}
@@ -134,7 +133,7 @@ setLoading(false);
         />
       </div>
       <div>
-        <label className="block mb-1">Surname</label>
+        <label className="block mb-1 font-semibold">Surname</label>
         <input
           name="surname"
           value={formData.surname}
@@ -148,7 +147,7 @@ setLoading(false);
   <section className="space-y-4">
   {/* Identification Type */}
   <div>
-    <label className="block font-medium mb-1">Identification Type</label>
+    <label className="block font-medium mb-1 font-semibold">Identification Type</label>
     <div className="space-y-2">
       <label className="flex items-center space-x-2">
         <input
@@ -159,7 +158,7 @@ setLoading(false);
           onChange={handleChange}
           className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
         />
-        <span>SA ID</span>
+        <span className="text-gray-600">SA ID</span>
       </label>
       <label className="flex items-center space-x-2">
         <input
@@ -170,14 +169,14 @@ setLoading(false);
           onChange={handleChange}
           className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
         />
-        <span>Passport</span>
+        <span className="text-gray-600">Passport</span>
       </label>
     </div>
   </div>
 
   {/* ID/Passport Number */}
   <div>
-    <label className="block font-medium mb-1">ID/ Passport Number</label>
+    <label className="block font-semibold mb- ">ID/ Passport Number</label>
     <input
       type="text"
       name="idPassportNumber"
@@ -189,7 +188,7 @@ setLoading(false);
 
   {/* ID/Passport Country */}
   <div>
-  <label className="block font-medium mb-1">ID/ Passport Country</label>
+  <label className="block font-semibold mb-1">ID/ Passport Country</label>
   <select
     name="idPassportCountry"
     value={formData.idPassportCountry}
@@ -250,7 +249,7 @@ setLoading(false);
 
   {/* Gender */}
   <div>
-    <label className="block font-medium mb-1">Gender*</label>
+    <label className="block font-semibold mb-1">Gender*</label>
     <div className="space-y-2">
       <label className="flex items-center space-x-2">
         <input
@@ -261,7 +260,7 @@ setLoading(false);
           onChange={handleChange}
           className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
         />
-        <span>Female</span>
+        <span className="text-gray-600">Female</span>
       </label>
       <label className="flex items-center space-x-2">
         <input
@@ -272,7 +271,7 @@ setLoading(false);
           onChange={handleChange}
           className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
         />
-        <span>Male</span>
+        <span className="text-gray-600">Male</span>
       </label>
     </div>
   </div>
@@ -294,10 +293,10 @@ setLoading(false);
 
   {/* Primary contact details */}
   <section>
-    <h2 className="text-xl text-gray-500 mb-4">Primary contact details</h2>
+    <h2 className="text-2xl mb-4 mt-20">Primary contact details</h2>
     <div className="space-y-4">
       <div>
-        <label className="block mb-1">mobile Number</label>
+        <label className="block mb-1 font-semibold">mobile Number</label>
         <input
           name="contactNo"
           value={formData.contactNo}
@@ -307,7 +306,7 @@ setLoading(false);
         />
       </div>
       <div>
-        <label className="block mb-1">mobile Number of A Friend/Family</label>
+        <label className="block mb-1 font-semibold">mobile Number of A Friend/Family</label>
         <input
           name="familyNo"
           value={formData.familyNo}
@@ -317,7 +316,7 @@ setLoading(false);
         />
       </div>
       <div>
-        <label className="block mb-1">Email address</label>
+        <label className="block mb-1 font-semibold">Email address</label>
         <input
           name="email"
           value={formData.email}
@@ -327,7 +326,7 @@ setLoading(false);
         />
       </div>
       <div>
-        <label className="block mb-1">Postal Code</label>
+        <label className="block mb-1 font-semibold">Postal Code</label>
         <input
           name="postalCode"
           value={formData.postalCode}
@@ -341,10 +340,10 @@ setLoading(false);
 
   {/* Tell us a bit more */}
   <section>
-    <h2 className="text-xl text-gray-500 mb-4">Tell us a bit more</h2>
+    <h2 className="text-2xl mb-4 mt-20">Tell us a bit more</h2>
     <div className="space-y-4">
       <div>
-        <label className="block mb-1">Company</label>
+        <label className="block mb-1 font-semibold">Company</label>
         <input
           name="company"
           value={formData.company}
@@ -355,7 +354,7 @@ setLoading(false);
         />
       </div>
       <div>
-    <label className="block font-medium mb-1">how long have you worked?</label>
+    <label className="block font-medium mb-1 font-semibold">how long have you worked?</label>
     <input
       type="text"
       name="workDuration"
@@ -366,7 +365,7 @@ setLoading(false);
     />
   </div>
       <div>
-        <label className="block mb-1">Please tell us how may we help you?</label>
+        <label className="block mb-1 font-semibold">Please tell us how may we help you?</label>
         <textarea
           name="message"
           value={formData.message}
@@ -375,7 +374,7 @@ setLoading(false);
         ></textarea>
       </div>
       <div>
-    <label className="block font-medium mb-1">Preferred method of communication</label>
+    <label className="block font-semibold mb-1">Preferred method of communication</label>
     <div className="space-y-2">
       <label className="flex items-center space-x-2">
         <input
@@ -386,7 +385,7 @@ setLoading(false);
           onChange={handleChange}
           className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
         />
-        <span>Phone</span>
+        <span className="text-gray-600">Phone</span>
       </label>
       <label className="flex items-center space-x-2">
         <input
@@ -397,7 +396,7 @@ setLoading(false);
           onChange={handleChange}
           className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
         />
-        <span>Email</span>
+        <span className="text-gray-600">Email</span>
       </label>
     </div>
   </div>
@@ -406,24 +405,24 @@ setLoading(false);
 
   {/* Payment Confirmation */}
   <section>
-    <h2 className="text-xl text-gray-600 mb-4">Payment Confirmation Details</h2>
+    <h2 className="text-2xl mb-4 mt-12">Payment Confirmation Details</h2>
     <div className="space-y-4">
-      <label className="flex items-center">
+      <label className="flex items-center text-gray-600">
         <input
           type="checkbox"
           name="depositConfirmed"
           checked={formData.depositConfirmed}
           onChange={handleChange}
-          className="mr-2"
+          className="mr-2 text-gray"
         />
         I confirm that I have the R1,000 deposit ready
       </label>
 
       <div>
-        <label className="block mb-1">Preferred method of payment</label>
+        <label className="block mb-2 font-semibold mt-12">Preferred method of payment</label>
         <div className="space-y-2 md:ml-4">
           {["Pick-up from my workplace", "Electronic Funds Transfer (EFT)", "ATM Direct Deposit"].map((method) => (
-            <label key={method} className="block">
+            <label key={method} className="block text-gray-600">
               <input
                 type="checkbox"
                 name="paymentMethods"
@@ -439,7 +438,7 @@ setLoading(false);
       </div>
 
       <div>
-        <label className="block mb-1">Salary Date</label>
+        <label className="block mb-1 mt-8 font-semibold">Salary Date</label>
         <input
           name="salaryDate"
           value={formData.salaryDate}
