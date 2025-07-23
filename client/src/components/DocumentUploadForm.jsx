@@ -17,6 +17,14 @@ const DocumentUploadForm = () => {
       messaging: true,
     });
 
+    const togglePreference = (key, value) => {
+  setPreferences(prev => ({
+    ...prev,
+    [key]: value,
+  }));
+};
+
+
   const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -57,7 +65,6 @@ const DocumentUploadForm = () => {
     if (!response.ok) throw new Error('Failed to submit');
 
     localStorage.removeItem("applicationFormData");
-    alert("Application submitted successfully! Redirecting...");
     navigate("/success");
 
   } catch (error) {
