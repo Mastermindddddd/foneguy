@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 
 
@@ -56,7 +57,7 @@ const DocumentUploadForm = () => {
       consentGiven: consent ? "Yes" : "No",
     };
 
-    const response = await fetch('http://localhost:5000/api/applications', {
+    const response = await fetch(`${SERVER_URL}/api/applications`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dataToSend)
@@ -105,7 +106,7 @@ const DocumentUploadForm = () => {
       </p>
 
       {/* Upload Cards */}
-<div className="flex flex-col md:flex-row gap-6 justify-center mb-40">
+<div className="flex flex-col md:flex-row gap-6 justify-center mb-40 mt-20">
   {/* Selfie Card */}
   <label className="relative w-60 h-80 cursor-pointer transition hover:scale-105">
     <img
@@ -119,15 +120,12 @@ const DocumentUploadForm = () => {
       className="absolute inset-0 opacity-0 cursor-pointer"
       onChange={(e) => handleFileChange(e, setSelfie)}
     />
-    <span className="absolute bottom-4 left-0 right-0 text-center text-blue-500 underline text-sm">
-      CHOOSE FILE
-    </span>
   </label>
 
   {/* ID/Passport Card */}
   <label className="relative w-60 h-80 cursor-pointer transition hover:scale-105">
     <img
-      src="/idpassport-card.xcf" // replace with your actual designed ID/Passport card path
+      src="/idpassport-card.png" // replace with your actual designed ID/Passport card path
       alt="ID/Passport Upload Card"
       className="object-cover w-full h-full rounded-xl shadow border"
     />
@@ -137,9 +135,6 @@ const DocumentUploadForm = () => {
       className="absolute inset-0 opacity-0 cursor-pointer"
       onChange={(e) => handleFileChange(e, setIdPassport)}
     />
-    <span className="absolute bottom-4 left-0 right-0 text-center text-blue-500 underline text-sm">
-      CHOOSE FILE
-    </span>
   </label>
 </div>
 

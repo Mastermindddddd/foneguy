@@ -8,9 +8,17 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
     firstName: "",
     surname: "",
     contactNo: "",
+    familyNo: "",
     email: "",
     company: "",
     message: "",
+    postalCode: "",
+    idType: "",
+    idPassportNumber: "",
+    idPassportCountry: "",
+    gender: "",
+    dateOfBirth: "",
+    workDuration: "",
     preferredCommunication: [],
     depositConfirmed: false,
     paymentMethods: [],
@@ -42,60 +50,62 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
     }
   };
 
+  const validateForm = () => {
+    const requiredFields = [
+      "title",
+      "firstName",
+      "surname",
+      "contactNo",
+      "email",
+      "idType",
+      "idPassportNumber",
+      "idPassportCountry",
+      "gender",
+      "dateOfBirth",
+    ];
+    for (let field of requiredFields) {
+      if (!formData[field]) {
+        setError(`Please complete all required fields before proceeding. Missing: ${field}`);
+        return false;
+      }
+    }
+    setError(null);
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     setSuccess(null);
-    setError(null);
+
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
 
     const preferred_channels = Object.entries(preferences)
-  .filter(([key, value]) => value)
-  .map(([key]) => key.charAt(0).toUpperCase() + key.slice(1))
-  .join(", ");
+      .filter(([_, value]) => value)
+      .map(([key]) => key.charAt(0).toUpperCase() + key.slice(1))
+      .join(", ");
 
-
-    const templateParams = {
-      title: formData.title,
-      first_name: formData.firstName,
-      surname: formData.surname,
-      contact_no: formData.contactNo,
-      email: formData.email,
-      company: formData.company,
-      message: formData.message,
+    const dataToSave = {
+      ...formData,
       preferred_communication: preferred_channels,
       deposit_confirmed: formData.depositConfirmed ? "Yes" : "No",
       payment_methods: formData.paymentMethods.join(", "),
-      preferred_debit_date: formData.preferredDebitDate,
-      salary_date: formData.salaryDate,
     };
 
     try {
-  localStorage.setItem("applicationFormData", JSON.stringify(templateParams));
-  setSuccess("Application saved successfully! Proceeding...");
-  setFormData({
-    title: "",
-    firstName: "",
-    surname: "",
-    contactNo: "",
-    email: "",
-    company: "",
-    message: "",
-    preferredCommunication: [],
-    depositConfirmed: false,
-    paymentMethods: [],
-    preferredDebitDate: "",
-    salaryDate: "",
-  });
-
-  setTimeout(() => {
-    navigate("/document-upload-form");
-  }, 1000);
-} catch (error) {
-  console.error("Failed to save form data:", error);
-  setError("Could not proceed. Please try again.");
-}
-setLoading(false);
-
+      localStorage.setItem("applicationFormData", JSON.stringify(dataToSave));
+      setSuccess("Application saved successfully! Proceeding...");
+      setTimeout(() => {
+        navigate("/document-upload-form");
+      }, 1000);
+    } catch (err) {
+      console.error("Failed to save form data:", err);
+      setError("Could not proceed. Please try again.");
+    }
+    setLoading(false);
   };
 
   return (
@@ -147,32 +157,22 @@ setLoading(false);
   <section className="space-y-4">
   {/* Identification Type */}
   <div>
-    <label className="block font-medium mb-1 font-semibold">Identification Type</label>
-    <div className="space-y-2">
-      <label className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          name="idType"
-          value="SA ID"
-          checked={formData.idType === "SA ID"}
-          onChange={handleChange}
-          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
-        />
-        <span className="text-gray-600">SA ID</span>
-      </label>
-      <label className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          name="idType"
-          value="Passport"
-          checked={formData.idType === "Passport"}
-          onChange={handleChange}
-          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
-        />
-        <span className="text-gray-600">Passport</span>
-      </label>
-    </div>
-  </div>
+        <label className="block font-semibold mb-1">ID Type*</label>
+        <div className="flex gap-4">
+          {["SA ID", "Passport"].map((id) => (
+            <label key={id} className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="idType"
+                value={id}
+                checked={formData.idType === id}
+                onChange={handleChange}
+              />
+              {id}
+            </label>
+          ))}
+        </div>
+      </div>
 
   {/* ID/Passport Number */}
   <div>
@@ -249,38 +249,28 @@ setLoading(false);
 
   {/* Gender */}
   <div>
-    <label className="block font-semibold mb-1">Gender*</label>
-    <div className="space-y-2">
-      <label className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          name="gender"
-          value="Female"
-          checked={formData.gender === "Female"}
-          onChange={handleChange}
-          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
-        />
-        <span className="text-gray-600">Female</span>
-      </label>
-      <label className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          name="gender"
-          value="Male"
-          checked={formData.gender === "Male"}
-          onChange={handleChange}
-          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
-        />
-        <span className="text-gray-600">Male</span>
-      </label>
-    </div>
-  </div>
+        <label className="block font-semibold mb-1">Gender*</label>
+        <div className="flex gap-4">
+          {["Male", "Female"].map((g) => (
+            <label key={g} className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="gender"
+                value={g}
+                checked={formData.gender === g}
+                onChange={handleChange}
+              />
+              {g}
+            </label>
+          ))}
+        </div>
+      </div>
 
   {/* Date of Birth */}
   <div>
     <label className="block font-medium mb-1">Date of Birth</label>
     <input
-      type="text"
+      type="date"
       name="dateOfBirth"
       value={formData.dateOfBirth}
       onChange={handleChange}
@@ -356,7 +346,7 @@ setLoading(false);
       <div>
     <label className="block font-medium mb-1 font-semibold">how long have you worked?</label>
     <input
-      type="text"
+      type="date"
       name="workDuration"
       value={formData.workDuration}
       onChange={handleChange}
@@ -374,32 +364,24 @@ setLoading(false);
         ></textarea>
       </div>
       <div>
-    <label className="block font-semibold mb-1">Preferred method of communication</label>
-    <div className="space-y-2">
-      <label className="flex items-center space-x-2">
+  <label className="block font-semibold mb-1">Preferred method of communication</label>
+  <div className="space-y-2">
+    {["Phone", "Email"].map((method) => (
+      <label key={method} className="flex items-center space-x-2">
         <input
           type="checkbox"
-          name="method"
-          value="Phone"
-          checked={formData.gender === "Phone"}
+          name="preferredCommunication"
+          value={method}
+          checked={formData.preferredCommunication.includes(method)}
           onChange={handleChange}
           className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
         />
-        <span className="text-gray-600">Phone</span>
+        <span className="text-gray-600">{method}</span>
       </label>
-      <label className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          name="method"
-          value="Email"
-          checked={formData.gender === "Email"}
-          onChange={handleChange}
-          className="h-4 w-4 text-cyan-700 border-gray-300 rounded"
-        />
-        <span className="text-gray-600">Email</span>
-      </label>
-    </div>
+    ))}
   </div>
+</div>
+
     </div>
   </section>
 
@@ -443,7 +425,7 @@ setLoading(false);
           name="salaryDate"
           value={formData.salaryDate}
           onChange={handleChange}
-          type="text"
+          type="date"
           placeholder="DD/MM/YYYY"
           className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
         />

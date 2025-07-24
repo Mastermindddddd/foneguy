@@ -7,18 +7,18 @@ const products = [
   { name: "Realme C55", price: "R2 990,00", info: "Minimum Deposit R800.00", image: "/c55.png" },
   { name: "OPPO A74", price: "R1 750,00", info: "Minimum Deposit R800.00", image: "/a74.png" },
   { name: "OPPO A38", price: "R2 495,00", info: "Minimum Deposit R800.00", image: "/a38.png" },
-  { name: "OPPO A58", price: "R2 650,00", info: "Minimum Deposit R800.00", image: "/a58.png" },
-  { name: "Samsung Galaxy A05s", price: "R1 999,00", info: "From R299.00 per month x 4", image: "/a05s.png" },
-  { name: "Samsung Galaxy A06", price: "R1 899,00", info: "For 60-day payment plan R2 799.00", image: "/a06.png" },
-  { name: "Samsung Galaxy S20FE", price: "R2 699,00", info: "For 60-day payment plan R3 499.00", image: "/s20fe.png" },
-  { name: "Samsung Galaxy A16", price: "R2 899,00", info: "For 60-day payment plan R3 799.00", image: "/a16.png" },
-  { name: "Samsung Galaxy A56 dual sim", price: "R2 999,00", info: "From R1 064.95 per month x 4", image: "/a56.png" },
-  { name: "Samsung Galaxy A25 5G", price: "R3 499,00", info: "For 60-day payment plan R4 299.00", image: "/a25.png" },
-  { name: "Samsung Galaxy A35", price: "R5 499,00", info: "From R2 822.45 per month x 3", image: "/a35.png" },
-  { name: "Samsung Galaxy A36", price: "R6 799,00", info: "For 60-day payment plan R7 599.00", image: "/a36.png" },
-  { name: "iPhone 8", price: "R2 999,00", info: "For 60-day payment plan R3 799.00", image: "/iphone-8.png" },
-  { name: "iPhone SE", price: "R3 099,00", info: "For 60-day payment plan R3 799.00", image: "/iphone-se.png" },
-  { name: "iPhone 13", price: "R9 999,00", info: "For 60-day payment plan R10 799.00", image: "/iphone-13.png" },
+  { name: "OPPO A58", price: "R2 595,00", info: "Minimum Deposit R800.00", image: "/a58.png" },
+  { name: "Samsung Galaxy A05s", price: "R1 999,00", info: "Minimum Deposit R800.00", image: "/a05s.png" },
+  { name: "Samsung Galaxy A06", price: "R1 999,00", info: "Minimum Deposit R800.00", image: "/a06.png" },
+  { name: "Samsung Galaxy S20FE", price: "R2 699,00", info: "Minimum Deposit R800.00", image: "/s20fe.png" },
+  { name: "Samsung Galaxy A16", price: "R2 999,00", info: "Minimum Deposit R800.00", image: "/a16.png" },
+  { name: "Samsung Galaxy A56 dual sim", price: "R6 999,00", info: "Minimum Deposit R1000.00", image: "/a56.png" },
+  { name: "Samsung Galaxy A25 5G", price: "R3 499,00", info: "Minimum Deposit R800.00", image: "/a25.png" },
+  { name: "Samsung Galaxy A35", price: "R5 499,00", info: "Minimum Deposit R1000.00", image: "/a35.png" },
+  { name: "Samsung Galaxy A36", price: "R6 799,00", info: "Minimum Deposit R1000.00", image: "/a36.png" },
+  { name: "iPhone 8", price: "R2 999,00", info: "Minimum Deposit R800.00", image: "/iphone-8.png" },
+  { name: "iPhone SE", price: "R3 099,00 (Pre-owned)", info: "Minimum Deposit R1000.00", image: "/iphone-se.png" },
+  { name: "iPhone 13", price: "R9 999,00", info: "Minimum Deposit R1000.00", image: "/iphone-13.png" },
 ];
 
 const highlightPrice = (text) => {
@@ -43,18 +43,18 @@ const DeviceGrid = () => {
         Explore best brands and models at competitive prices. Flexible payment plans available.
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {products.map((product, index) => (
           <div
             key={index}
             className="bg-white p-4 rounded-lg shadow border hover:shadow-md transition-all duration-300"
           >
             {/* Image */}
-            <div className="w-full h-[160px] flex items-center justify-center mb-4 bg-white">
+            <div className="w-full h-[200px] flex items-center justify-center mb-4 bg-white">
   <img
     src={product.image}
     alt={product.name}
-    className="max-h-[140px] max-w-[140px] object-contain transition-transform hover:scale-105"
+    className="max-h-[200px] max-w-[200px] object-contain transition-transform hover:scale-105"
   />
 </div>
 
@@ -67,7 +67,7 @@ const DeviceGrid = () => {
 
             {/* Pricing Info */}
             <div className="text-left space-y-1">
-              <p className="text-gray-700 text-sm">{product.price}</p>
+              <p className="text-gray-700 text-sm font-semibold">{product.price}</p>
               <p className="text-sm text-gray-700">{highlightPrice(product.info)}</p>
             </div>
 
