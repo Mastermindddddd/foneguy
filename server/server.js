@@ -7,6 +7,10 @@ const applicationRoutes = require('./routes/applicationRoutes');
 
 const app = express();
 
+app.get('/', (req, res) => {
+  res.send('foneguy API Server Running');
+});
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' })); // To handle Base64 images
