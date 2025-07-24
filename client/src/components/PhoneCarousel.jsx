@@ -9,8 +9,8 @@ const phones = [
   { name: "RealMe C51", price: "R1 750,00", deposit: "R800,00", image: "/c51.png" },
   { name: "OPPO A38", price: "R2 495,00", deposit: "R800,00", image: "/a38.png" },
   { name: "OPPO A58", price: "R2 595,00", deposit: "R800,00", image: "/a58.png" },
-  { name: "OPPO C55", price: "R2 995,00", deposit: "R800,00", image: "/c55.png" },
-  { name: "OPPO A25", price: "R2 995,00", deposit: "R800,00", image: "/a25.png" },
+  { name: "OPPO C55", price: "R2 990,00", deposit: "R800,00", image: "/c55.png" },
+  { name: "OPPO A25", price: "R3 499,00", deposit: "R800,00", image: "/a25.png" },
 ];
 
 const PhoneCarousel = () => {
