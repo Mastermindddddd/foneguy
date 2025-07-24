@@ -11,8 +11,12 @@ app.get('/', (req, res) => {
   res.send('foneguy API Server Running');
 });
 
-// Middleware
-app.use(cors());
+//Middleware
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://foneguy.co.za'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json({ limit: '10mb' })); // To handle Base64 images
 app.use(express.urlencoded({ extended: true }));
 
