@@ -30,7 +30,6 @@ const App = () => {
       <ScrollToTop /> {/* Ensure scrolling to top on route change */}
       <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
         <Navbar />
-        <div className="w-full h-14 bg-blue-600"></div>
         <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />

@@ -22,10 +22,10 @@ const CanIAffordThis = () => {
           <div className="text-md text-white mb-4 md:mb-8 font-bold text-center md:text-left">
             Deposit<br />
             <span className="text-black font-semibold text-gray-800 mt-4">
-              R{repayment}
+              R800
             </span>
           </div>
-          <p className="text-white mb-2 md:mb-4 text-center md:text-left">Total repayment</p>
+          <p className="text-white mb-2 md:mb-4 text-center md:text-left">Total repayment: <span className="text-gray-800 font-semibold">R{repayment}</span></p>
           <p className="text-xl md:text-5xl font-bold mb-2 md:mb-4 text-gray-800 text-center md:text-left">
             (Total price - R1000 - R500 ) / 4
           </p>

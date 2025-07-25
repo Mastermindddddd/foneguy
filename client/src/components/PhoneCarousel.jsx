@@ -54,7 +54,7 @@ const PhoneCarousel = () => {
             </div>
 
             <div className="text-left space-y-1">
-              <p className="text-gray-700 text-sm">{phone.price}</p>
+              <p className="text-gray-700 text-sm font-semibold">{phone.price}</p>
               <p className="text-red-600 text-sm font-semibold">
                 Minimum Deposit {phone.deposit}
               </p>
