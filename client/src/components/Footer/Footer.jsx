@@ -43,13 +43,13 @@ const Footer = () => {
         <div>
           <h4 className="font-semibold mb-3">Get In Touch</h4>
           <ul className="space-y-2 text-gray-300">
-            <li><span className="font-semibold text-white">Tel:</span> 075 208 1799</li>
+            <li>Tel: <span className="font-semibold text-white">075 208 1799</span></li>
             <li>
-              <span className="font-semibold text-white">Email:</span>{" "}
-              <a href="mailto:kenn@techcafe.co.za" className="underline">kenn@techcafe.co.za</a>
+              <span>Email:</span>{" "}
+              <a href="mailto:kenn@techcafe.co.za" className="underline">Erli@techcafe.co.za</a>
             </li>
-            <li><span className="font-semibold text-white">USSD:</span> *134*33011# (free)</li>
-            <li><span className="font-semibold text-white">Address:</span> Woodlands Office Park, 20 Woodlands Dr, Woodlands, Sandton, 2080</li>
+            <li>WhatsApp: <span className="font-semibold text-white">061 484 4378</span></li>
+            <li>Address: <span className="underline">Sunninghill Place, 9 Simba Road, Sandton, Johannesburg, 2000</span></li>
           </ul>
         </div>
 

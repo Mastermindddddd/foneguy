@@ -24,6 +24,7 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
     paymentMethods: [],
     preferredDebitDate: "",
     salaryDate: "",
+    paymentDeclaration: false,
   });
 
   const [loading, setLoading] = useState(false);
@@ -62,6 +63,7 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
       "idPassportCountry",
       "gender",
       "dateOfBirth",
+      "paymentDeclaration"
     ];
     for (let field of requiredFields) {
       if (!formData[field]) {
@@ -429,6 +431,20 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
           placeholder="DD/MM/YYYY"
           className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
         />
+      </div>
+      <div>
+        <h2 className="text-lg mb-2 mt-12 font-semibold">I hereby commit to making all payments as per the scheduled dates above</h2>
+        <label className="flex items-center text-gray-600">
+        <input
+          type="checkbox"
+          name="paymentDeclaration"
+          checked={formData.paymentDeclaration}
+          onChange={handleChange}
+          className="mr-2 text-gray"
+        />
+        I confirm that I commit to making all the payments 
+      </label>
+
       </div>
     </div>
   </section>

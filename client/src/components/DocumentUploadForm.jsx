@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const DocumentUploadForm = () => {
@@ -9,6 +10,7 @@ const DocumentUploadForm = () => {
   const [idPassport, setIdPassport] = useState(null);
   const [consent, setConsent] = useState(false);
   const [rewards, setRewards] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
   const [preferences, setPreferences] = useState({
     email: true,
     sms: true,
@@ -30,6 +32,11 @@ const DocumentUploadForm = () => {
       reader.onload = () => resolve(reader.result);
       reader.onerror = reject;
     });
+
+  const handleCaptchaChange = (token) => {
+  setCaptchaToken(token);
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +67,11 @@ const DocumentUploadForm = () => {
       });
 
       if (!response.ok) throw new Error('Failed to submit');
+      if (!captchaToken) {
+        alert("Please complete the reCAPTCHA.");
+        return;
+    }
+
 
       localStorage.removeItem("applicationFormData");
       navigate("/success");
@@ -88,7 +100,7 @@ const DocumentUploadForm = () => {
   return (
     <div>
       {/* Hero Banner */}
-      <div className="w-full bg-gradient-to-r bg-cyan-700 py-6 text-center text-white md:mb-40">
+      <div className="w-full bg-gradient-to-r bg-cyan-700 py-6 text-center text-white md:mb-40 md:mt-36 mt-20">
         <h2 className="text-lg sm:text-xl md:text-3xl font-medium italic px-2">
           Start your application now & <br />
           Join <span className="font-bold not-italic">FoneGuy</span> Today
@@ -198,12 +210,13 @@ const DocumentUploadForm = () => {
         </label>
 
         {/* CAPTCHA & Buttons */}
-        <div className="flex items-center justify-center md:justify-start gap-4 mb-6 px-2">
-          <div className="border rounded p-2 bg-gray-100 text-center w-full sm:w-auto">
-            <div className="mb-1">I'm not a robot</div>
-            <div className="text-xs">[reCAPTCHA]</div>
-          </div>
-        </div>
+        <div className="flex items-center justify-center md:justify-start gap-4 mb-6 px-2 mt-6">
+  <ReCAPTCHA
+    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} // or directly paste your site key as a string
+    onChange={handleCaptchaChange}
+  />
+</div>
+
 
         <div className="flex flex-col sm:flex-row justify-center md:justify-end space-y-4 sm:space-y-0 sm:space-x-4 mt-6 px-2">
           <button type="button" className="bg-cyan-700 text-white px-6 py-2 rounded w-full sm:w-auto">

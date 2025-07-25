@@ -43,7 +43,7 @@ const ContactSupport = () => {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center bg-white overflow-hidden">
+    <div className="relative w-full flex flex-col items-center justify-center bg-white overflow-hidden mt-20 md:mt-36">
       <div className="text-center py-12 px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Contact & Support</h2>
         <p className="text-gray-600 mt-2 max-w-xl mx-auto">
@@ -61,7 +61,7 @@ const ContactSupport = () => {
             <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="example@company.com" className="w-full p-3 border border-gray-300 rounded-lg" />
             <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="+11 000 000 000" className="w-full p-3 border border-gray-300 rounded-lg" />
             <textarea name="message" value={formData.message} onChange={handleChange} required placeholder="Leave us a Message" rows="4" className="w-full p-3 border border-gray-300 rounded-lg"></textarea>
-            <button type="submit" className="w-full bg-teal-600 text-white p-3 rounded-lg font-semibold" disabled={loading}>
+            <button type="submit" className="w-full bg-cyan-700 text-white p-3 rounded-lg font-semibold" disabled={loading}>
               {loading ? "Sending..." : "Send Message"}
             </button>
             {success && <p className="text-green-600">{success}</p>}
@@ -70,20 +70,24 @@ const ContactSupport = () => {
         </div>
 
         <div className="flex flex-col justify-center space-y-6 text-gray-800 ml-12">
+          <div className="w-full h-0.5 bg-gray-300 "></div>
+
           <div>
-            <h4 className="text-lg font-semibold">Call Us</h4>
-            <p className="font-medium mt-1">+27 (0)752 081 799</p>
+            <h4 className="text-lg font-semibold text-gray-600">Call Us</h4>
+            <p className="font-semibold mt-2 underline">+27 (0)752 081 799</p>
+          </div>
+          <div className="w-full h-0.5 bg-gray-300 "></div>
+          <div>
+            <h4 className="text-lg font-semibold text-gray-600">Email Support</h4>
+            <p className="text-gray-600 mt-1 mb-2">Email us & we will get back to you within 24 hours</p>
+            <p className="font-bold underline mt-1">Erli@techcafe.co.za</p>
           </div>
           <div>
-            <h4 className="text-lg font-semibold">Email Support</h4>
-            <p className="text-gray-600">Email us & we will get back to you within 24 hours</p>
-            <p className="font-bold underline mt-1">kenn@techcafe.co.za</p>
+            <h4 className="text-lg font-semibold text-gray-600">Address</h4>
+            <p className="mt-1 mb-2">We're centrally located. Use the map below to get directions.</p>
+            <p className="font-semibold underline mt-1">Sunninghill Place, 9 Simba Road, Sandton, Johannesburg, 2000</p>
           </div>
-          <div>
-            <h4 className="text-lg font-semibold">Address</h4>
-            <p>We're centrally located. Use the map below to get directions.</p>
-            <p className="font-medium underline mt-1">Woodlands Office Park, 20 Woodlands Dr, Woodlands, Sandton, 2080</p>
-          </div>
+          <div className="w-full h-0.5 bg-gray-300 "></div>
         </div>
       </div>
 

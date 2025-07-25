@@ -25,9 +25,9 @@ const CanIAffordThis = () => {
               R800
             </span>
           </div>
-          <p className="text-white mb-2 md:mb-4 text-center md:text-left">Total repayment: <span className="text-gray-800 font-semibold">R{repayment}</span></p>
+          <p className="text-white mb-2 md:mb-4 text-center md:text-left">Total repayment</p>
           <p className="text-xl md:text-5xl font-bold mb-2 md:mb-4 text-gray-800 text-center md:text-left">
-            (Total price - R1000 - R500 ) / 4
+            R{repayment}
           </p>
           <p className="text-sm md:text-md text-white mb-4 md:mb-8 text-center md:text-left">
             Then 4 payments after that. Within 60 days.
