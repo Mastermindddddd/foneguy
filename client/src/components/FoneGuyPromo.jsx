@@ -2,7 +2,7 @@ import React from "react";
 
 const WhyChooseUs = () => {
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-blue-50 to-white flex flex-col items-center justify-center px-6 overflow-hidden md:mt-36 mt-20">
+    <section className="relative w-full min-h-screen bg-gradient-to-br from-blue-50 to-white flex flex-col items-center justify-center px-6 overflow-hidden md:mt-36 mt-24">
       <div className="absolute inset-0 bg-[url('/background-pattern.svg')] bg-cover bg-center opacity-10"></div>
 
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between max-w-screen-2xl w-full px-6 md:px-12">
