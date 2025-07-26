@@ -6,7 +6,7 @@ const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
 // CORS configuration - MUST be before other middleware
-{/*const allowedOrigins = [
+const allowedOrigins = [
   "https://foneguy.co.za",
   "http://localhost:5173",
 ];
@@ -25,14 +25,7 @@ app.use(cors({
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true // Enable if you need cookies/auth
-}));*/}
-
-app.use(cors({
-  origin: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
+  credentials: false
 }));
 
 // Handle preflight requests explicitly
