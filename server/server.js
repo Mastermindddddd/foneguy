@@ -5,19 +5,20 @@ const cors = require('cors');
 const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
-// CORS configuration
-const allowedOrigins = [
-  "https://foneguy.co.za",
-  "http://localhost:5173",
-];
-
-const corsOptions = {
-  origin: ['https://foneguy.co.za', 'http://localhost:5173'],
-  credentials: true,
-  exposedHeaders: ['set-cookie'],
-};
-
-app.use(cors(corsOptions));
+const allowedOrigins = ["https://foneguy.co.za", "http://localhost:5173"];
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
