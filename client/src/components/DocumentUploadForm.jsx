@@ -10,7 +10,7 @@ const DocumentUploadForm = () => {
   const [idPassport, setIdPassport] = useState(null);
   const [consent, setConsent] = useState(false);
   const [rewards, setRewards] = useState(false);
-//const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
   const [preferences, setPreferences] = useState({
     email: true,
     sms: true,
@@ -67,10 +67,10 @@ const DocumentUploadForm = () => {
       });
 
       if (!response.ok) throw new Error('Failed to submit');
-    {/* if (!captchaToken) {
+      if (!captchaToken) {
         alert("Please complete the reCAPTCHA.");
         return;
-    }*/}
+    }
 
 
       localStorage.removeItem("applicationFormData");
@@ -209,13 +209,13 @@ const DocumentUploadForm = () => {
           </ul>
         </label>
 
-        {/* CAPTCHA & Buttons 
+        {/* CAPTCHA & Buttons */}
         <div className="flex items-center justify-center md:justify-start gap-4 mb-6 px-2 mt-6">
   <ReCAPTCHA
     sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} // or directly paste your site key as a string
     onChange={handleCaptchaChange}
   />
-</div>*/}
+</div>
 
 
         <div className="flex flex-col sm:flex-row justify-center md:justify-end space-y-4 sm:space-y-0 sm:space-x-4 mt-6 px-2">
