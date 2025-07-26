@@ -5,52 +5,75 @@ const cors = require('cors');
 const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
-// CORS configuration - MUST be before other middleware
+// CORS configuration
 const allowedOrigins = [
   "https://foneguy.co.za",
   "http://localhost:5173",
 ];
 
+// More permissive CORS for development/testing
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, Postman, etc.)
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, Postman, etc.)
     if (!origin) return callback(null, true);
     
+    // Check if origin is in allowed list
     if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.log('Blocked origin:', origin);
-      callback(new Error("Not allowed by CORS"));
+      return callback(null, true);
     }
+    
+    // For development - log blocked origins
+    console.log('Blocked by CORS:', origin);
+    callback(new Error('Not allowed by CORS'));
   },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: false
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: false,
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 }));
 
-// Handle preflight requests explicitly
-app.options('*', cors());
+// Explicitly handle preflight requests
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With');
+  res.sendStatus(200);
+});
 
+// Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// Test route
 app.get('/', (req, res) => {
-  res.send('foneguy API Server Running');
+  res.json({ 
+    message: 'foneguy API Server Running',
+    timestamp: new Date().toISOString()
+  });
 });
 
-// Routes
+// API Routes
 app.use('/api/applications', applicationRoutes);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, { 
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('MongoDB connected'))
+.then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err.message);
+  res.status(500).json({ error: 'Internal server error' });
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log('Allowed origins:', allowedOrigins);
+});
 
-module.exports = app; // Export for Vercel
+module.exports = app;
