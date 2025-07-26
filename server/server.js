@@ -5,13 +5,37 @@ const cors = require('cors');
 const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
+const ALLOWED_ORIGIN =
+  process.env.NODE_ENV === 'production'
+    ? 'https://foneguy.co.za'
+    : '*';
+
+// CORS middleware
+app.use(
+  cors({
+    origin: ALLOWED_ORIGIN,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
+
+// Handle preflight OPTIONS requests globally
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  return res.sendStatus(200);
+});
+
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Test route
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'foneguy API Server Running',
     timestamp: new Date().toISOString()
   });
@@ -38,7 +62,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log('Allowed origins:', allowedOrigins);
+  console.log('CORS origin:', ALLOWED_ORIGIN);
 });
 
 module.exports = app;
