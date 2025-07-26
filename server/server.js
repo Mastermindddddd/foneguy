@@ -7,12 +7,12 @@ const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
 // Enhanced CORS configuration
-app.use(cors({
+{/*app.use(cors({
   origin: "*", // Allow all origins - you can restrict this to specific domains
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: false // Set to true if you need to send cookies
-}));
+}));*/}
 
 // Additional manual CORS headers (as backup)
 app.use((req, res, next) => {
