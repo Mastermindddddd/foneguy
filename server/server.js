@@ -10,13 +10,9 @@ const ALLOWED_ORIGIN =
     ? 'https://foneguy.co.za'
     : '*';
 
-// CORS middleware
 app.use(
   cors({
-    origin: ALLOWED_ORIGIN,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
+    origin: "*",
   })
 );
 
