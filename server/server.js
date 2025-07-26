@@ -2,17 +2,26 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const applicationRoutes = require('./routes/applicationRoutes');
+
+const app = express();
+
+// Import routes after app is created
+let applicationRoutes;
+try {
+  applicationRoutes = require('./routes/applicationRoutes');
+} catch (error) {
+  console.error('Error loading application routes:', error);
+}
 
 const app = express();
 
 // Enhanced CORS configuration
-{/*app.use(cors({
+app.use(cors({
   origin: "*", // Allow all origins - you can restrict this to specific domains
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: false // Set to true if you need to send cookies
-}));*/}
+}));
 
 // Additional manual CORS headers (as backup)
 app.use((req, res, next) => {
@@ -40,8 +49,19 @@ app.get('/', (req, res) => {
   });
 });
 
-// API Routes
-app.use('/api/applications', applicationRoutes);
+// Handle favicon requests
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end();
+});
+
+// API Routes - only if applicationRoutes loaded successfully
+if (applicationRoutes) {
+  app.use('/api/applications', applicationRoutes);
+} else {
+  app.use('/api/applications', (req, res) => {
+    res.status(500).json({ error: 'Application routes not available' });
+  });
+}
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
