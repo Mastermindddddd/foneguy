@@ -13,7 +13,6 @@ try {
   console.error('Error loading application routes:', error);
 }
 
-const app = express();
 
 // Enhanced CORS configuration
 app.use(cors({
