@@ -5,20 +5,25 @@ const cors = require('cors');
 const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
-// Custom CORS middleware
+// Custom CORS Middleware to handle preflight
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  
+  const allowedOrigin = 'https://foneguy.co.za';
+  const allowedMethods = 'GET, POST, PUT, DELETE, OPTIONS';
+  const allowedHeaders = 'Content-Type, Authorization';
+
+  res.header('Access-Control-Allow-Origin', allowedOrigin);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', allowedMethods);
+  res.header('Access-Control-Allow-Headers', allowedHeaders);
+
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
+    return res.sendStatus(204); // No Content
   }
 
   next();
 });
 
+const applicationRoutes = require('./routes/applicationRoutes');
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
