@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-  origin: '*',
+  origin: '*', // or whitelist domains in production
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -15,14 +15,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
-
-// Optional: Allow OPTIONS requests to pass through unchallenged
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
   }
   next();
 });
+
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
