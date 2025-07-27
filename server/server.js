@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
 // Custom CORS Middleware to handle preflight
