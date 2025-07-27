@@ -4,23 +4,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-// Custom CORS Middleware to handle preflight
-app.use((req, res, next) => {
-  const allowedOrigin = 'https://foneguy.co.za';
-  const allowedMethods = 'GET, POST, PUT, DELETE, OPTIONS';
-  const allowedHeaders = 'Content-Type, Authorization';
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
 
-  res.header('Access-Control-Allow-Origin', allowedOrigin);
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', allowedMethods);
-  res.header('Access-Control-Allow-Headers', allowedHeaders);
-
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(204); // No Content
-  }
-
-  next();
-});
+app.use(cors(corsOptions))
 
 const applicationRoutes = require('./routes/applicationRoutes');
 
