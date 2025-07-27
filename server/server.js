@@ -1,18 +1,28 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const applicationRoutes = require('./routes/applicationRoutes');
 const cors = require('cors');
 const app = express();
 
-const corsOptions ={
-   origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
-}
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionSuccessStatus: 200,
+};
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
-const applicationRoutes = require('./routes/applicationRoutes');
+// Optional: Allow OPTIONS requests to pass through unchallenged
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
