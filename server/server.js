@@ -5,11 +5,20 @@ const cors = require('cors');
 const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+// Custom CORS middleware
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
