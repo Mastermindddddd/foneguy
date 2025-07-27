@@ -39,48 +39,47 @@ const DocumentUploadForm = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const formDetails = JSON.parse(localStorage.getItem("applicationFormData")) || {};
-
-      const selfieBase64 = selfie ? await toBase64(selfie) : "";
-      const idPassportBase64 = idPassport ? await toBase64(idPassport) : "";
-
-      const communicationChannels = Object.entries(preferences)
-        .filter(([_, value]) => value)
-        .map(([key]) => (key === "instant" ? "Instant Messaging" : key.charAt(0).toUpperCase() + key.slice(1)))
-        .join(", ");
-
-      const dataToSend = {
-        ...formDetails,
-        selfie: selfieBase64,
-        idPassport: idPassportBase64,
-        communicationPreferences: communicationChannels,
-        joinRewards: rewards ? "Yes" : "No",
-        consentGiven: consent ? "Yes" : "No",
-      };
-
-      const response = await fetch(`${SERVER_URL}/api/applications`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dataToSend)
-      });
-
-      if (!response.ok) throw new Error('Failed to submit');
-      if (!captchaToken) {
-        alert("Please complete the reCAPTCHA.");
-        return;
+  e.preventDefault();
+  try {
+    if (!captchaToken) {
+      alert("Please complete the reCAPTCHA.");
+      return;
     }
 
+    const formDetails = JSON.parse(localStorage.getItem("applicationFormData")) || {};
+    const selfieBase64 = selfie ? await toBase64(selfie) : "";
+    const idPassportBase64 = idPassport ? await toBase64(idPassport) : "";
 
-      localStorage.removeItem("applicationFormData");
-      navigate("/success");
+    const communicationChannels = Object.entries(preferences)
+      .filter(([_, value]) => value)
+      .map(([key]) => (key === "instant" ? "Instant Messaging" : key.charAt(0).toUpperCase() + key.slice(1)))
+      .join(", ");
 
-    } catch (error) {
-      console.error("Submission failed", error);
-      alert("Failed to submit application. Please try again.");
-    }
-  };
+    const templateParams = {
+      ...formDetails,
+      //selfie_image: selfieBase64,
+      //id_passport_image: idPassportBase64,
+      communication_preferences: communicationChannels,
+      join_rewards: rewards ? "Yes" : "No",
+      consent_given: consent ? "Yes" : "No",
+    };
+
+    // Replace YOUR values below with your EmailJS service info
+    await emailjs.send(
+      "service_lkwx8dh",
+      "template_gzfzaaj",
+      templateParams,
+      "09z4nZUsb7p5XukxJ"
+    );
+
+    localStorage.removeItem("applicationFormData");
+    navigate("/success");
+
+  } catch (err) {
+    console.error("EmailJS Submission Error", err);
+    alert("Failed to submit application. Please try again.");
+  }
+};
 
   const handleFileChange = (e, setFile) => {
     setFile(e.target.files[0]);
