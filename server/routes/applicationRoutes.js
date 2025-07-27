@@ -5,6 +5,9 @@ const Application = require('../models/Application');
 // POST /api/applications
 router.post('/', async (req, res) => {
   try {
+    // Before saving to the database
+    req.body.paymentDeclaration = req.body.paymentDeclaration === "on";
+
     const application = new Application(req.body);
     await application.save();
     res.status(201).json({ message: 'Application saved successfully!' });

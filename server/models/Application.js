@@ -18,7 +18,7 @@ const applicationSchema = new mongoose.Schema({
   communicationPreferences: String,
   joinRewards: String,
   consentGiven: String,
-  paymentDeclaration: Boolean,
+  paymentDeclaration: { type: Boolean, required: true },
   createdAt: { type: Date, default: Date.now }
 });
 
