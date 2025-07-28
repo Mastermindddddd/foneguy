@@ -288,7 +288,7 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
     <h2 className="text-2xl mb-4 mt-20">Primary contact details</h2>
     <div className="space-y-4">
       <div>
-        <label className="block mb-1 font-semibold">mobile Number</label>
+        <label className="block mb-1 font-semibold">Mobile Number</label>
         <input
           name="contactNo"
           value={formData.contactNo}
@@ -298,7 +298,7 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
         />
       </div>
       <div>
-        <label className="block mb-1 font-semibold">mobile Number of A Friend/Family</label>
+        <label className="block mb-1 font-semibold">Mobile Number of A Friend/Family</label>
         <input
           name="familyNo"
           value={formData.familyNo}
@@ -346,7 +346,7 @@ const ApplicationForm = ({ preferences, setPreferences }) => {
         />
       </div>
       <div>
-    <label className="block font-medium mb-1 font-semibold">how long have you worked?</label>
+    <label className="block font-medium mb-1 font-semibold">How long have you worked?</label>
     <input
       type="date"
       name="workDuration"

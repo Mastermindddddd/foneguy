@@ -33,7 +33,7 @@ const CanIAffordThis = () => {
           </p>
           <div className="flex justify-center md:justify-start">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition w-full sm:w-auto md:w-[14rem]">
-  4 months
+  Calculate
 </button>
 
           </div>
