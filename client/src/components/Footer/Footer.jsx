@@ -48,7 +48,7 @@ const Footer = () => {
               <span>Email:</span>{" "}
               <a href="mailto:kenn@techcafe.co.za" className="underline">Erli@techcafe.co.za</a>
             </li>
-            <li>WhatsApp: <span className="font-semibold text-white">061 484 4378</span></li>
+            <li>WhatsApp: <span className="font-semibold text-white">075 208 1799</span></li>
             <li>Address: <span className="underline">Sunninghill Place, 9 Simba Road, Sandton, Johannesburg, 2000</span></li>
           </ul>
         </div>

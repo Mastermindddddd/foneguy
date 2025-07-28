@@ -24,12 +24,12 @@ const CanIAffordThis = () => {
               R800
             </span>
           </div>
-          <p className="text-white mb-2 md:mb-4 text-center md:text-left text-lg font-semibold">4 Monthly Payments</p>
+          <p className="text-white mb-2 md:mb-4 text-center md:text-left text-lg font-semibold">Pay in 4 installments of</p>
           <p className="text-xl md:text-5xl font-bold mb-2 md:mb-4 text-gray-800 text-center md:text-left">
             R{repayment}
           </p>
           <p className="text-sm md:text-lg font-semibold text-white mb-4 md:mb-8 text-center md:text-left">
-            Then 4 payments should be completed within 60 days
+            The 4 payments should be completed within 60 days
           </p>
           <div className="flex justify-center md:justify-start">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition w-full sm:w-auto md:w-[14rem]">
