@@ -9,7 +9,7 @@ const WhyChooseUs = () => {
         <div className="space-y-6 md:max-w-xl text-center md:text-left">
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">Why <br/>Choose Us?</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-md md:max-w-lg mx-auto md:mx-0 mt-4 text-gray-600 italic">
-            FoneGuy offers you a <span className="font-semibold text-gray-900">secure</span> and <span className="font-semibold text-gray-900">affordable</span> opportunity to rent to own a smartphone. Get access<br/>
+            FoneGuy offers you a <span className="font-semibold text-gray-900">secure</span> and <span className="font-semibold text-gray-900">affordable</span> opportunity to rent to own a smartphone. <br/>Get access
             to a <span className="font-semibold text-gray-900">HIGH END DEMO FONE</span> from as little as R162 per month
           </p>
           <div className="flex justify-center md:justify-start mt-6">
