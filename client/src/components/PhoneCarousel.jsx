@@ -17,43 +17,56 @@ const phones = [
 const PhoneCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, instanceRef] = useKeenSlider({
-    loop: true,
-    slides: { perView: 4, spacing: 15 },
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
+  loop: true,
+  mode: "free-snap", // Smoother snapping
+  slides: { 
+    perView: 4, 
+    spacing: 20,
+    origin: "center" // Center align slides
+  },
+  slideChanged(slider) {
+    setCurrentSlide(slider.track.details.rel);
+  },
+  breakpoints: {
+    "(max-width: 1024px)": { 
+      slides: { perView: 3, spacing: 15, origin: "center" } 
     },
-    breakpoints: {
-      "(max-width: 1024px)": { slides: { perView: 3, spacing: 10 } },
-      "(max-width: 768px)": { slides: { perView: 2, spacing: 10 } },
-      "(max-width: 480px)": { slides: { perView: 1, spacing: 10 } },
+    "(max-width: 768px)": { 
+      slides: { perView: 2, spacing: 12, origin: "center" } 
     },
-    animation: {
-      duration: 2000, // slow transition
-      easing: (t) => t,
+    "(max-width: 480px)": { 
+      slides: { perView: 1, spacing: 10, origin: "center" } 
     },
-  });
+  },
+  // Improved animation settings
+  defaultAnimation: {
+    duration: 1000,
+    easing: (t) => 1 - Math.pow(1 - t, 3) // easeOutCubic for smoother transitions
+  }
+});
 
   // Auto-play effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (instanceRef.current) {
-        instanceRef.current.next();
-      }
-    }, 4000); // slide every 4s
-    return () => clearInterval(interval);
-  }, [instanceRef]);
+  const interval = setInterval(() => {
+    if (instanceRef.current) {
+      instanceRef.current.next();
+    }
+  }, 5000); // Increased to 5s for better user experience
+  
+  return () => clearInterval(interval);
+}, [instanceRef]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 relative">
       <div ref={sliderRef} className="keen-slider">
         {phones.map((phone, idx) => (
           <motion.div
-            key={idx}
-            className="keen-slider__slide bg-white p-4 rounded-lg shadow border hover:shadow-md transition-all duration-300"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.2, duration: 0.8 }}
-          >
+  key={idx}
+  className="keen-slider__slide"
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: idx * 0.1, duration: 0.6, ease: "easeOut" }}
+>
             <div className="flex justify-center items-center mb-4">
               <img
                 src={phone.image}
